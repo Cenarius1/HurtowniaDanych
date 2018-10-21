@@ -8,5 +8,7 @@
 *.props
 obj/*
 bin/*
+HurtowniaDanych/bin/*
+HurtowniaDanych/obj/*
 
 
