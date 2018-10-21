@@ -1,0 +1,12 @@
+*.suo
+*.lock
+*.ide
+*.ide-wal
+*.ide-shm
+*.pbd
+*.cache
+*.props
+obj/*
+bin/*
+
+
