@@ -6,7 +6,8 @@ namespace HurtowniaDanych
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            DataWarehouseManager dataWarehouseManager = new DataWarehouseManager();
+            dataWarehouseManager.Launch();
 
             Console.Read();
         }
