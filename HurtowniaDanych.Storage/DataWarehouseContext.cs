@@ -1,0 +1,12 @@
+﻿using HurtowaniaDanych.Domain;
+using Microsoft.EntityFrameworkCore;
+
+namespace HurtowniaDanych.Storage {
+    public class DataWarehouseContext : DbContext {
+        public DbSet<CarTopic> Cars { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        }
+    }
+}
