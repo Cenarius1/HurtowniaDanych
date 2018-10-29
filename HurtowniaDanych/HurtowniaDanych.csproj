@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HurtowniaDanych.Advertisement\HurtowniaDanych.Advertisement.csproj" />
     <ProjectReference Include="..\HurtowniaDanych.Storage\HurtowniaDanych.Storage.csproj" />
   </ItemGroup>
 

@@ -9,6 +9,7 @@ namespace HurtowniaDanych
             DataWarehouseManager dataWarehouseManager = new DataWarehouseManager();
             dataWarehouseManager.Launch();
 
+            Console.WriteLine("Press the Enter key to exit.");
             Console.Read();
         }
     }

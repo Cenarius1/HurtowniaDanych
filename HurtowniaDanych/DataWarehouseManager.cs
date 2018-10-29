@@ -1,6 +1,10 @@
-﻿using HurtowniaDanych.Storage;
+﻿using HurtowniaDanych.Advertisement.Classes;
+using HurtowniaDanych.Advertisement.Interfaces;
+using HurtowniaDanych.Advertisement.Models;
+using HurtowniaDanych.Storage;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HurtowniaDanych
@@ -8,9 +12,11 @@ namespace HurtowniaDanych
     public class DataWarehouseManager
     {
         public List<string> LinkList;
+        IAdFactory<Details> adFactory = new AdDetailsFactory();
+
         public void Launch()
         {
-            ManageDB();
+            //ManageDB();
             ManageLinks();
             ManageParse();
             //ManageDB();
@@ -24,7 +30,13 @@ namespace HurtowniaDanych
 
         private void ManageParse()
         {
-
+            // process only first two urls - only for test purposes
+            var firstTwoItems = LinkList.Take(2);
+            foreach(var url in firstTwoItems)
+            {
+                IAd<Details> advertisment = adFactory.MakeAd(url);
+                //Console.WriteLine("Print Add\n" + advertisment.RetrieveAd() + "\n");
+            }
         }
 
         private void ManageDB()
