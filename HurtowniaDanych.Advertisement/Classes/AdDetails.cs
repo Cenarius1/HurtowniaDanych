@@ -14,6 +14,7 @@ namespace HurtowniaDanych.Advertisement.Classes
     {
         private Details ad;
         private List<string> deserializationErrors = new List<string>();
+        private readonly bool isDebug = false;
 
         public void ProcessUrl(string url)
         {
@@ -33,7 +34,7 @@ namespace HurtowniaDanych.Advertisement.Classes
                 var match = Regex.Match(InnerHtml, pattern);
                 if (match.Success)
                 {
-                    Console.WriteLine(match.Groups["details"].ToString());
+                    if (isDebug) Console.WriteLine(match.Groups["details"].ToString());
                     try
                     {
                         ad = JsonConvert.DeserializeObject<Details>(match.Groups["details"].ToString(), new JsonSerializerSettings
@@ -43,8 +44,6 @@ namespace HurtowniaDanych.Advertisement.Classes
                                 args.ErrorContext.Handled = true;
                             },
                             DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
-                            //DefaultValueHandling = DefaultValueHandling.Populate,
-                            //NullValueHandling = NullValueHandling.Include               
                             MissingMemberHandling = MissingMemberHandling.Error
                         });
 
@@ -57,7 +56,7 @@ namespace HurtowniaDanych.Advertisement.Classes
 
             }
 
-            Console.WriteLine("Errors: " + string.Join(",", deserializationErrors.ToArray()));
+            if(isDebug) Console.WriteLine("Deserialization errors: " + string.Join(",", deserializationErrors.ToArray()));
         }
 
         public Details RetrieveAd()

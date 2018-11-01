@@ -13,6 +13,7 @@ namespace HurtowniaDanych
     {
         public List<string> LinkList;
         IAdFactory<Details> adFactory = new AdDetailsFactory();
+        IAdFactory<Schema> adSchemaFactory = new AdSchemaFactory();
 
         public void Launch()
         {
@@ -29,12 +30,15 @@ namespace HurtowniaDanych
 
         private void ManageParse()
         {
-            // process only first two urls - only for test purposes
-            var firstTwoItems = LinkList.Take(2);
-            foreach(var url in firstTwoItems)
+            foreach(var url in LinkList)
             {
+                // Retrieve ad and bind to Details model
                 IAd<Details> advertisment = adFactory.MakeAd(url);
-                //Console.WriteLine("Print Add\n" + advertisment.RetrieveAd() + "\n");
+                Console.WriteLine("\nPrint Add\n" + advertisment.RetrieveAd() + "\n");
+
+                // Retrieve ad and bind to Schema model
+                //IAd<Schema> advert = adSchemaFactory.MakeAd(url);
+                //Console.WriteLine("\nPrint Add\n" + advert.RetrieveAd());
             }
         }
 

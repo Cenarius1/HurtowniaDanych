@@ -38,7 +38,9 @@ namespace HurtowniaDanych.Advertisement.Models
         [JsonProperty("mileage")]
         public string[] Mileage { get; set; }
         [JsonProperty("engine_capacity")]
-        public IList<string> EngineCapacity { get; set; }
+        public IList<string> EngineCapacity { get; set; }        
+        [JsonProperty("vin")]
+        public IList<string> Vin { get; set; }
         [JsonProperty("fuel_type")]
         public string[] FuelType { get; set; }
         [JsonProperty("engine_power")]
@@ -63,7 +65,9 @@ namespace HurtowniaDanych.Advertisement.Models
         [JsonProperty("price_raw")]
         public string PriceRaw { get; set; }
         [JsonProperty("country_origin")]
-        public List<string> CountryOrigin { get; set; }
+        public IList<string> CountryOrigin { get; set; }
+        [JsonProperty("registration")]
+        public IList<string> Registration { get; set; }
         [JsonProperty("user_status")]
         public int UserStatus { get; set; }
         [JsonProperty("env")]
@@ -72,25 +76,19 @@ namespace HurtowniaDanych.Advertisement.Models
 
         public override string ToString()
         {
-
-            //sample json received and processed
-            //{"title":"bmw seria 5","offer_seek":"offer","private_business":"private",
-            //"category":"osobowe","region":"pomorskie","subregion":"gdansk","ad_id":"6049965958",
-            //"city":"gdansk","make":["bmw"],"model":["seria-5"],"engine_code":["550"],"version":["f10-2009"],
-            //"year":["2012"],"mileage":["81500"],"engine_capacity":["4400"],"vin":["WBAFU91050C955034"],
-            //"fuel_type":["petrol"],"engine_power":["407"],"gearbox":["dual-clutch"],"transmission":["all-wheel-auto"],
-            //"body_type":["sedan"],"color":["grey"],"features":["abs","central-lock","front-electric-windows",
-            //"electronic-rearview-mirrors","electronic-immobiliser","front-airbags","front-passenger-airbags",
-            //"original-radio","assisted-steering","alloy-wheels","both-parking-sensors","rear-parking-sensors","electric-exterior-mirror","electric-interior-mirror","rear-electric-windows","electric-adjustable-seats","aux-in","usb-socket","rearview-camera","automatic-air-conditioning","quad-air-conditioning","onboard-computer","shift-paddles","heated-windshield","heated-rearview-mirrors","front-heated-seats"],"price":["100000-200000"],"price_raw":"120000","country_origin":["d"],"user_status":0,"env":"prod"}
-
             var engine_code = (EngineCode?.Any() ?? false) ? string.Join(",", EngineCode) : "";
             var version = (Version?.Any() ?? false) ? string.Join(",", Version) : "";
             var engine_capacity = (EngineCapacity?.Any() ?? false) ? string.Join(",", EngineCapacity) : "";
+            var vin = (Vin?.Any() ?? false) ? string.Join(",", Vin) : "";
+            var engine_power = (EnginePower?.Any() ?? false) ? string.Join(",", EnginePower) : "";
             var transmission = (Transmission?.Any() ?? false) ? string.Join(",", Transmission) : "";
             var door_count = (DoorCount?.Any() ?? false) ? string.Join(",", DoorCount) : "";
             var nr_seats = (NrSeats?.Any() ?? false) ? string.Join(",", NrSeats) : "";
+            var registration = (Registration?.Any() ?? false) ? string.Join(",", Registration) : "";
+            var features = (Features?.Any() ?? false) ? string.Join(",", Features) : "";
 
             return string.Format("ID: " + AdId +
+                "\nCena: " + PriceRaw +
                 "\nTytul: " + Title +
                 "\nOferta od: " + PrivateBusiness +
                 "\nKategoria: " + Category +
@@ -103,15 +101,17 @@ namespace HurtowniaDanych.Advertisement.Models
                 "\nRok produkcji: " + Year.GetValue(0) +
                 "\nPrzebieg: " + Mileage.GetValue(0) +
                 "\nPojemnosc skokowa: " + engine_capacity +
+                "\nVin: " + vin +
                 "\nRodzaj paliwa: " + FuelType.GetValue(0) +
-                "\nMoc: " + EnginePower.GetValue(0) +
+                "\nMoc: " + engine_power +
                 "\nSkrzynia biegow:" + Gearbox.GetValue(0) +
                 "\nNaped: " + transmission +
                 "\nTyp: " + BodyType.GetValue(0) +
                 "\nLiczba drzwi: " + door_count +
                 "\nLiczba miejsc: " + nr_seats +
                 "\nKolor: " + Color.GetValue(0) +
-                "\nWyposazenie: " + string.Join(",", Features)
+                "\nNumer rejestracyjny pojazdu: " + registration +
+                "\nWyposazenie: " + features
             );
         }       
 

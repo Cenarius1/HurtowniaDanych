@@ -40,6 +40,27 @@ namespace HurtowniaDanych.Advertisement.Models
         public Offers Offers { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("Url: " + Url +
+                "\nNazwa: " + Name +
+                "\nTyp: " + BodyType +
+                "\nRodzaj paliwa: " + FuelType +
+                "\nMarka pojazdu: " + Brand +
+                "\nModel pojazdu: " + Model +
+                "\nKolor: " + Color +
+                "\nLiczba drzwi: " + NumberOfDoors +
+                "\nStan: " + ItemCondition +
+                "\nLiczba miejsc: " + VehicleSeatingCapacity +
+                "\nVIN: " + VehicleIdentificationNumber +
+                "\nPierwsza rejestracja: " + DateVehicleFirstRegistered +
+                "\nPojemnosc skokowa: " + VehicleEngine.EngineDisplacement +
+                "\nPrzebieg: " + MileageFromOdometer.Value + " " + MileageFromOdometer.UnitCode +
+                "\nCena: " + Offers.Price + " " + Offers.PriceCurrency +
+                "\nOpis: " + Description
+                );
+        }
     }
 
     public class VehicleEng
