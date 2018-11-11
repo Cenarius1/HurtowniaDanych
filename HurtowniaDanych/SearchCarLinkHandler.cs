@@ -8,13 +8,46 @@ namespace HurtowniaDanych
 {
     public class SearchCarLinkHandler
     {
-        public const string BaseLinkPath = "https://www.otomoto.pl/osobowe/?search%5Bfilter_float_year%3Ato%5D=2018&search%5Bnew_used%5D=on";
+        public const string BaseLinkPath = "https://www.otomoto.pl/osobowe/?search[filter_float_year%3Ato]=2018&page=";
 
-        public List<string> GetLinks()
+        public List<string> GetLinksFromEachPage()
         {
-            var rawData = GetHtml();
-            //jak skonczy sie stronnicowanie to link do nastepnego page czy cus
+            List<string> linksFromEachPage = new List<string>();
+            int lastPageNumber =  GetPagesCount();
+            /*
+             *  Lepiej ustawić sztuczną ilość stron, a nie brać z maksymalnej ze strony
+             *  1) Jest tego ogrom ~7685, a na każdej stronie 16 aut, czas pobierania tego bedzie duzy
+             *  2) Maksymalna ilosc stron zmienia się. A sprawdzanie za każdym razem jest mnożeniem zapytań.
+             */
+            lastPageNumber = 10;
+            for (int i = 0; i < lastPageNumber; i++)
+            {
+                string linkToPage = BaseLinkPath + (i+1).ToString();
+                linksFromEachPage.AddRange(GetLinks(linkToPage));
+            }
+
+            return linksFromEachPage;
+        }
+
+        private List<string> GetLinks(string pageLink)
+        {
+            var rawData = GetHtml(pageLink);
             return GetFiltredLinksFromRawHtml(rawData);
+        }
+
+        private int GetPagesCount()
+        {
+            var rawData = GetHtml(BaseLinkPath+"1");
+            string patternTripleDots = "<span class=\"page\">...</span>";
+            var indexOfPagingTripleDots = rawData.IndexOf(patternTripleDots);
+            int rangeAfterTrimpleDots = 30;
+            int rangeBeforeTrimpleDots = 296;
+            var textWithTripleDots = rawData.Substring(indexOfPagingTripleDots+ rangeBeforeTrimpleDots, rangeAfterTrimpleDots);
+            var indexOfEndOfLastPageNumber = textWithTripleDots.IndexOf("</span>");
+            var textLastPageNumber = textWithTripleDots.Substring(0, indexOfEndOfLastPageNumber);
+            int result = -1;
+            int.TryParse(textLastPageNumber, out result);
+            return result;
         }
 
         private List<string> GetFiltredLinksFromRawHtml(string rawData)
@@ -39,9 +72,9 @@ namespace HurtowniaDanych
             return linkList;
         }
 
-        private string GetHtml()
+        private string GetHtml(string pageLink)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(BaseLinkPath);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(pageLink);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             if (response.StatusCode == HttpStatusCode.OK)
             {

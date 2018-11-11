@@ -16,7 +16,6 @@ namespace HurtowniaDanych
 
         public void Launch()
         {
-            //ManageDB();
             ManageLinks();
             ManageParse();
             //ManageDB();
@@ -25,7 +24,7 @@ namespace HurtowniaDanych
         private void ManageLinks()
         {
             SearchCarLinkHandler searchCarLinkHandler = new SearchCarLinkHandler();
-            LinkList = searchCarLinkHandler.GetLinks();
+            LinkList = searchCarLinkHandler.GetLinksFromEachPage();
         }
 
         private void ManageParse()
