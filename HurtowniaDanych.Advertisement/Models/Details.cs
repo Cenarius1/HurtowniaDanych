@@ -81,9 +81,11 @@ namespace HurtowniaDanych.Advertisement.Models
             var engine_capacity = (EngineCapacity?.Any() ?? false) ? string.Join(",", EngineCapacity) : "";
             var vin = (Vin?.Any() ?? false) ? string.Join(",", Vin) : "";
             var engine_power = (EnginePower?.Any() ?? false) ? string.Join(",", EnginePower) : "";
+            var gearbox = (Gearbox?.Any() ?? false) ? string.Join(",", Gearbox) : "";
             var transmission = (Transmission?.Any() ?? false) ? string.Join(",", Transmission) : "";
             var door_count = (DoorCount?.Any() ?? false) ? string.Join(",", DoorCount) : "";
             var nr_seats = (NrSeats?.Any() ?? false) ? string.Join(",", NrSeats) : "";
+            var color = (Color?.Any() ?? false) ? string.Join(",", Color) : "";
             var registration = (Registration?.Any() ?? false) ? string.Join(",", Registration) : "";
             var features = (Features?.Any() ?? false) ? string.Join(",", Features) : "";
 
@@ -104,12 +106,12 @@ namespace HurtowniaDanych.Advertisement.Models
                 "\nVin: " + vin +
                 "\nRodzaj paliwa: " + FuelType.GetValue(0) +
                 "\nMoc: " + engine_power +
-                "\nSkrzynia biegow:" + Gearbox.GetValue(0) +
+                "\nSkrzynia biegow: " + gearbox +
                 "\nNaped: " + transmission +
                 "\nTyp: " + BodyType.GetValue(0) +
                 "\nLiczba drzwi: " + door_count +
                 "\nLiczba miejsc: " + nr_seats +
-                "\nKolor: " + Color.GetValue(0) +
+                "\nKolor: " + color +
                 "\nNumer rejestracyjny pojazdu: " + registration +
                 "\nWyposazenie: " + features
             );
