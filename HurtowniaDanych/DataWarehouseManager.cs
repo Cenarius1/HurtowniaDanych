@@ -30,9 +30,13 @@ namespace HurtowniaDanych
 
         private void ManageParse()
         {
+            var carDetailsRepository = new CarDetailsRepository(new DataWarehouseContext());
+
             if (LinkList.Any())
             {
-                LinkList.ForEach(url => {
+                List<string> firstTwoItems = LinkList.Take(2).ToList();
+
+                firstTwoItems.ForEach(url => {
                     // Retrieve ad and bind to Details model
                     IAd<Details> advertisment = adFactory.MakeAd(url);
                     Console.WriteLine("\nPrint Add\n" + advertisment.RetrieveAd() + "\n");
@@ -40,6 +44,9 @@ namespace HurtowniaDanych
                     // Retrieve ad and bind to Schema model
                     //IAd<Schema> advert = adSchemaFactory.MakeAd(url);
                     //Console.WriteLine("\nPrint Add\n" + advert.RetrieveAd());
+
+                    carDetailsRepository.Insert(advertisment.RetrieveAd());
+                    carDetailsRepository.SaveChanges();
                 });
 
             } else {

@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HurtowaniaDanych.Domain\HurtowaniaDanych.Domain.csproj" />
+    <ProjectReference Include="..\HurtowniaDanych.Advertisement\HurtowniaDanych.Advertisement.csproj" />
   </ItemGroup>
 
 </Project>
