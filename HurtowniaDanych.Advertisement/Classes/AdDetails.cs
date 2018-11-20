@@ -14,7 +14,7 @@ namespace HurtowniaDanych.Advertisement.Classes
     {
         private Details ad;
         private List<string> deserializationErrors = new List<string>();
-        private readonly bool isDebug = false;
+        private readonly bool isDebug = true;
 
         public void ProcessUrl(string url)
         {
@@ -37,15 +37,7 @@ namespace HurtowniaDanych.Advertisement.Classes
                     if (isDebug) Console.WriteLine(match.Groups["details"].ToString());
                     try
                     {
-                        ad = JsonConvert.DeserializeObject<Details>(match.Groups["details"].ToString(), new JsonSerializerSettings
-                        {
-                            Error = delegate (object sender, ErrorEventArgs args) {
-                                deserializationErrors.Add(args.ErrorContext.Error.Message);
-                                args.ErrorContext.Handled = true;
-                            },
-                            DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
-                            MissingMemberHandling = MissingMemberHandling.Error
-                        });
+                        ad = JsonConvert.DeserializeObject<Details>(match.Groups["details"].ToString(), new FixConverter());
 
                     }
                     catch (JsonSerializationException ex)

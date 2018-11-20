@@ -34,7 +34,7 @@ namespace HurtowniaDanych
 
             if (LinkList.Any())
             {
-                List<string> firstTwoItems = LinkList.Take(2).ToList();
+                List<string> firstTwoItems = LinkList.Take(10).ToList();
 
                 firstTwoItems.ForEach(url => {
                     // Retrieve ad and bind to Details model
@@ -44,9 +44,6 @@ namespace HurtowniaDanych
                     // Retrieve ad and bind to Schema model
                     //IAd<Schema> advert = adSchemaFactory.MakeAd(url);
                     //Console.WriteLine("\nPrint Add\n" + advert.RetrieveAd());
-
-                    carDetailsRepository.Insert(advertisment.RetrieveAd());
-                    carDetailsRepository.SaveChanges();
                 });
 
             } else {
