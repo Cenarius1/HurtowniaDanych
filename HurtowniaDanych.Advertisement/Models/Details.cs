@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -19,8 +22,10 @@ namespace HurtowniaDanych.Advertisement.Models
         public string Region { get; set; }
         [JsonProperty("subregion")]
         public string Subregion { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [JsonProperty("ad_id")]
-        public string AdId { get; set; }
+        public long AdId { get; set; }
         [JsonProperty("user_id")]
         public string UserId { get; set; }
         [JsonProperty("city")]
@@ -58,7 +63,7 @@ namespace HurtowniaDanych.Advertisement.Models
         [JsonProperty("color")]
         public string Color { get; set; }
         [JsonProperty("features")]
-        public IList<string> Features { get; set; }
+        public string Features { get; set; }
         [JsonProperty("price")]
         public string Price { get; set; }
         [JsonProperty("price_raw")]
@@ -70,8 +75,9 @@ namespace HurtowniaDanych.Advertisement.Models
         [JsonProperty("user_status")]
         public int UserStatus { get; set; }
         [JsonProperty("env")]
-
-        public string Env { get; set; }
+        public string Env { get; set; }        
+        public DateTime Inserted { get; set; }        
+        public DateTime LastUpdated { get; set; }
 
         public override string ToString()
         {

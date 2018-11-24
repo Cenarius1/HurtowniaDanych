@@ -3,10 +3,54 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HurtowniaDanych.Storage.Migrations
 {
-    public partial class UpdateMigration : Migration
+    public partial class HDProjectMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "CarDetails",
+                columns: table => new
+                {
+                    Title = table.Column<string>(nullable: true),
+                    OfferSeek = table.Column<string>(nullable: true),
+                    PrivateBusiness = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: true),
+                    Region = table.Column<string>(nullable: true),
+                    Subregion = table.Column<string>(nullable: true),
+                    AdId = table.Column<long>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Make = table.Column<string>(nullable: true),
+                    Model = table.Column<string>(nullable: true),
+                    EngineCode = table.Column<string>(nullable: true),
+                    Version = table.Column<string>(nullable: true),
+                    Year = table.Column<string>(nullable: true),
+                    Mileage = table.Column<int>(nullable: false),
+                    EngineCapacity = table.Column<string>(nullable: true),
+                    Vin = table.Column<string>(nullable: true),
+                    FuelType = table.Column<string>(nullable: true),
+                    EnginePower = table.Column<string>(nullable: true),
+                    Gearbox = table.Column<string>(nullable: true),
+                    Transmission = table.Column<string>(nullable: true),
+                    BodyType = table.Column<string>(nullable: true),
+                    DoorCount = table.Column<string>(nullable: true),
+                    NrSeats = table.Column<string>(nullable: true),
+                    Color = table.Column<string>(nullable: true),
+                    Features = table.Column<string>(nullable: true),
+                    Price = table.Column<string>(nullable: true),
+                    PriceRaw = table.Column<string>(nullable: true),
+                    CountryOrigin = table.Column<string>(nullable: true),
+                    Registration = table.Column<string>(nullable: true),
+                    UserStatus = table.Column<int>(nullable: false),
+                    Env = table.Column<string>(nullable: true),
+                    Inserted = table.Column<DateTime>(nullable: false),
+                    LastUpdated = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarDetails", x => x.AdId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Cars",
                 columns: table => new
@@ -119,6 +163,9 @@ namespace HurtowniaDanych.Storage.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CarDetails");
+
             migrationBuilder.DropTable(
                 name: "Cars");
         }

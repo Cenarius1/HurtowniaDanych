@@ -1,6 +1,7 @@
 ﻿using HurtowniaDanych.Advertisement.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HurtowniaDanych.Storage
@@ -11,15 +12,19 @@ namespace HurtowniaDanych.Storage
 
         public CarDetailsRepository(DataWarehouseContext context)
         {
-            this.context = context;           
+            this.context = context;
         }
 
         public Details Insert(Details advert)
         {
-            //advert.Make = 
+            if (context.CarDetails.Any(i => i.AdId == advert.AdId))
+            {
+                return null;
+            };
 
-
-            context.Add(advert);
+            advert.Inserted = DateTime.Now;
+            advert.LastUpdated = DateTime.Now;
+            context.Add(advert);            
             return advert;
         }
 

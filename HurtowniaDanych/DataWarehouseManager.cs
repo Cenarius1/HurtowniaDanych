@@ -44,7 +44,11 @@ namespace HurtowniaDanych
                     // Retrieve ad and bind to Schema model
                     //IAd<Schema> advert = adSchemaFactory.MakeAd(url);
                     //Console.WriteLine("\nPrint Add\n" + advert.RetrieveAd());
+
+                    carDetailsRepository.Insert(advertisment.RetrieveAd());
                 });
+
+                carDetailsRepository.SaveChanges();
 
             } else {
                 Console.WriteLine("List is empty.");

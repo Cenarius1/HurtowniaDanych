@@ -224,6 +224,81 @@ namespace HurtowniaDanych.Storage.Migrations
 
                     b.ToTable("Cars");
                 });
+
+            modelBuilder.Entity("HurtowniaDanych.Advertisement.Models.Details", b =>
+                {
+                    b.Property<long>("AdId");
+
+                    b.Property<string>("BodyType");
+
+                    b.Property<string>("Category");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Color");
+
+                    b.Property<string>("CountryOrigin");
+
+                    b.Property<string>("DoorCount");
+
+                    b.Property<string>("EngineCapacity");
+
+                    b.Property<string>("EngineCode");
+
+                    b.Property<string>("EnginePower");
+
+                    b.Property<string>("Env");
+
+                    b.Property<string>("Features");
+
+                    b.Property<string>("FuelType");
+
+                    b.Property<string>("Gearbox");
+
+                    b.Property<DateTime>("Inserted");
+
+                    b.Property<DateTime>("LastUpdated");
+
+                    b.Property<string>("Make");
+
+                    b.Property<int>("Mileage");
+
+                    b.Property<string>("Model");
+
+                    b.Property<string>("NrSeats");
+
+                    b.Property<string>("OfferSeek");
+
+                    b.Property<string>("Price");
+
+                    b.Property<string>("PriceRaw");
+
+                    b.Property<string>("PrivateBusiness");
+
+                    b.Property<string>("Region");
+
+                    b.Property<string>("Registration");
+
+                    b.Property<string>("Subregion");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("Transmission");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<int>("UserStatus");
+
+                    b.Property<string>("Version");
+
+                    b.Property<string>("Vin");
+
+                    b.Property<string>("Year");
+
+                    b.HasKey("AdId");
+
+                    b.ToTable("CarDetails");
+                });
 #pragma warning restore 612, 618
         }
     }

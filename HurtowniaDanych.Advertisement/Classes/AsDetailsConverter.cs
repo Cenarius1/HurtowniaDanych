@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HurtowniaDanych.Advertisement.Classes
@@ -86,12 +87,32 @@ namespace HurtowniaDanych.Advertisement.Classes
                 foreach(var x in item)
                 {
                     JToken value = x.Value;                    
-                    if((value.Type == JTokenType.Array) && (x.Key != "features"))
+                    if(value.Type == JTokenType.Array) 
                     {
-                        // Take first item from array
-                        var vvv = value.First;
-                        // Replace array with first item value
-                        x.Value.Replace(vvv);
+                        if (x.Key != "features")
+                        {
+                            // Take first item from array
+                            var vvv = value.First;
+                            // Replace array with first item value
+                            x.Value.Replace(vvv);
+                        }
+                        else {
+                            Console.WriteLine(value);
+                            Console.WriteLine(x.Value);
+
+                            var sb = new System.Text.StringBuilder();
+                            foreach (var f in value.Children())
+                            {
+                                sb.Append(f);
+                            }
+                            //Console.WriteLine(value.Children().ToString());
+                            //Console.WriteLine(sb.ToString());
+                            
+                            string s = String.Join(",", value.Children());
+                            // Replace array with comma separated list
+                            x.Value.Replace(s);
+                        }
+                            
                     }
                 }
                 
