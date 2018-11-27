@@ -249,15 +249,11 @@ namespace HurtowniaDanych.Storage.Migrations
 
                     b.Property<string>("Env");
 
-                    b.Property<string>("Features");
-
                     b.Property<string>("FuelType");
 
                     b.Property<string>("Gearbox");
 
                     b.Property<DateTime>("Inserted");
-
-                    b.Property<DateTime>("LastUpdated");
 
                     b.Property<string>("Make");
 
@@ -298,6 +294,143 @@ namespace HurtowniaDanych.Storage.Migrations
                     b.HasKey("AdId");
 
                     b.ToTable("CarDetails");
+                });
+
+            modelBuilder.Entity("HurtowniaDanych.Advertisement.Models.Features", b =>
+                {
+                    b.Property<long>("AdvertId");
+
+                    b.Property<bool>("Abs");
+
+                    b.Property<bool>("Alarm");
+
+                    b.Property<bool>("AlloyWheels");
+
+                    b.Property<bool>("Asr");
+
+                    b.Property<bool>("AssistedSteering");
+
+                    b.Property<bool>("AutomaticAirConditioning");
+
+                    b.Property<bool>("AutomaticLights");
+
+                    b.Property<bool>("AutomaticWipers");
+
+                    b.Property<bool>("AuxIn");
+
+                    b.Property<bool>("AuxiliaryHeating");
+
+                    b.Property<bool>("BlindSpotSensor");
+
+                    b.Property<bool>("Bluetooth");
+
+                    b.Property<bool>("BothParkingSensors");
+
+                    b.Property<bool>("Cd");
+
+                    b.Property<bool>("CdChanger");
+
+                    b.Property<bool>("CentralLock");
+
+                    b.Property<bool>("CruiseControl");
+
+                    b.Property<bool>("DaytimeLights");
+
+                    b.Property<bool>("DriverKneeAirbag");
+
+                    b.Property<bool>("DualAirConditioning");
+
+                    b.Property<bool>("Dvd");
+
+                    b.Property<bool>("ElectricAdjustableSeats");
+
+                    b.Property<bool>("ElectricExteriorMirror");
+
+                    b.Property<bool>("ElectricInteriorMirror");
+
+                    b.Property<bool>("ElectronicImmobiliser");
+
+                    b.Property<bool>("ElectronicRearviewMirrors");
+
+                    b.Property<bool>("Esp");
+
+                    b.Property<bool>("FogLights");
+
+                    b.Property<bool>("FrontAirbags");
+
+                    b.Property<bool>("FrontElectricWindows");
+
+                    b.Property<bool>("FrontPassengerAirbags");
+
+                    b.Property<bool>("FrontSideAirbags");
+
+                    b.Property<bool>("Gps");
+
+                    b.Property<bool>("HeadDisplay");
+
+                    b.Property<bool>("HeatedRearviewMirrors");
+
+                    b.Property<bool>("HeatedWindshield");
+
+                    b.Property<DateTime>("Inserted");
+
+                    b.Property<bool>("Isofix");
+
+                    b.Property<bool>("LaneAssist");
+
+                    b.Property<bool>("LeatherInterior");
+
+                    b.Property<bool>("Leds");
+
+                    b.Property<bool>("Mp3");
+
+                    b.Property<bool>("OnboardComputer");
+
+                    b.Property<bool>("OriginalRadio");
+
+                    b.Property<bool>("PanoramicSunroof");
+
+                    b.Property<bool>("ParkAssist");
+
+                    b.Property<bool>("QuadAirConditioning");
+
+                    b.Property<bool>("RearElectricWindows");
+
+                    b.Property<bool>("RearParkingSensors");
+
+                    b.Property<bool>("RearPassengerAirbags");
+
+                    b.Property<bool>("RearviewCamera");
+
+                    b.Property<bool>("RoofBars");
+
+                    b.Property<bool>("SdSocket");
+
+                    b.Property<bool>("ShiftPaddles");
+
+                    b.Property<bool>("SideWindowAirbags");
+
+                    b.Property<bool>("SpeedLimiter");
+
+                    b.Property<bool>("SteeringWhellComands");
+
+                    b.Property<bool>("Sunroof");
+
+                    b.Property<bool>("SystemStartStop");
+
+                    b.Property<bool>("TintedWindows");
+
+                    b.Property<bool>("TowingHook");
+
+                    b.Property<bool>("UsbSocket");
+
+                    b.Property<bool>("VelourInterior");
+
+                    b.Property<bool>("XenonLights");
+
+                    b.HasKey("AdvertId");
+
+                    b.ToTable("CarFeatures");
                 });
 #pragma warning restore 612, 618
         }

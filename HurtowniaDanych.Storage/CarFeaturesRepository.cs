@@ -6,25 +6,25 @@ using System.Text;
 
 namespace HurtowniaDanych.Storage
 {
-    public class CarDetailsRepository : IDataWarehouseTopicRepository<Details>
+    public class CarFeaturesRepository : IDataWarehouseTopicRepository<Features>
     {
         private readonly DataWarehouseContext context;
 
-        public CarDetailsRepository(DataWarehouseContext context)
+        public CarFeaturesRepository(DataWarehouseContext context)
         {
             this.context = context;
         }
 
-        public Details Insert(Details advert)
+        public Features Insert(Features advert)
         {
-            if (context.CarDetails.Any(i => i.AdId == advert.AdId))
+            //context.CarFeatures
+            if (context.CarFeatures.Any(i => i.AdvertId == advert.AdvertId))
             {
                 return null;
             };
 
             advert.Inserted = DateTime.Now;
-            //advert.LastUpdated = DateTime.Now;
-            context.Add(advert);            
+            context.Add(advert);
             return advert;
         }
 

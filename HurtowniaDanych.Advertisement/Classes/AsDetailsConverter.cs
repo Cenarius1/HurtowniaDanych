@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace HurtowniaDanych.Advertisement.Classes
@@ -97,20 +98,29 @@ namespace HurtowniaDanych.Advertisement.Classes
                             x.Value.Replace(vvv);
                         }
                         else {
-                            Console.WriteLine(value);
-                            Console.WriteLine(x.Value);
+                            //var feats = JArray.FromObject(value);
 
-                            var sb = new System.Text.StringBuilder();
-                            foreach (var f in value.Children())
+                            //Features convertedFeatures = new Features();
+                            //JObject json = JObject.FromObject(convertedFeatures);
+                            //foreach (JProperty property in json.Properties())
+                            //{
+
+                            //    bool has = feats.ToObject<List<string>>().Any(y => y == property.Name);
+                            //    if (has)
+                            //        property.Value = true;
+                            //}
+
+                            var convertedFeatures = new Features();
+                            var json = JObject.FromObject(convertedFeatures);
+                            foreach (JProperty property in json.Properties())
                             {
-                                sb.Append(f);
+                                bool has = value.ToObject<List<string>>().Any(y => y == property.Name);
+                                if (has)
+                                    property.Value = true;                                
                             }
-                            //Console.WriteLine(value.Children().ToString());
-                            //Console.WriteLine(sb.ToString());
-                            
-                            string s = String.Join(",", value.Children());
-                            // Replace array with comma separated list
-                            x.Value.Replace(s);
+
+                            Console.WriteLine(json.ToString());
+                            x.Value.Replace(json);
                         }
                             
                     }

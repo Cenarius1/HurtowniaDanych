@@ -31,10 +31,11 @@ namespace HurtowniaDanych
         private void ManageParse()
         {
             var carDetailsRepository = new CarDetailsRepository(new DataWarehouseContext());
+            var carFeaturesRepository = new CarFeaturesRepository(new DataWarehouseContext());
 
             if (LinkList.Any())
             {
-                List<string> firstTwoItems = LinkList.Take(10).ToList();
+                List<string> firstTwoItems = LinkList.Take(3).ToList();
 
                 firstTwoItems.ForEach(url => {
                     // Retrieve ad and bind to Details model
@@ -46,9 +47,17 @@ namespace HurtowniaDanych
                     //Console.WriteLine("\nPrint Add\n" + advert.RetrieveAd());
 
                     carDetailsRepository.Insert(advertisment.RetrieveAd());
+
+                    var features = advertisment.RetrieveAd().Features;
+                    if (features != null)
+                    {
+                        features.AdvertId = advertisment.RetrieveAd().AdId;
+                        carFeaturesRepository.Insert(features);
+                    }
                 });
 
                 carDetailsRepository.SaveChanges();
+                carFeaturesRepository.SaveChanges();
 
             } else {
                 Console.WriteLine("List is empty.");

@@ -11,8 +11,13 @@ namespace HurtowniaDanych.Storage {
 
         public DbSet<Details> CarDetails { get; set; }
 
+        public DbSet<Features> CarFeatures { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {}
     }
 }

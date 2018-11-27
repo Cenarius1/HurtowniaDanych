@@ -62,8 +62,9 @@ namespace HurtowniaDanych.Advertisement.Models
         public string NrSeats { get; set; }
         [JsonProperty("color")]
         public string Color { get; set; }
+        [NotMapped]
         [JsonProperty("features")]
-        public string Features { get; set; }
+        public Features Features { get; set; }
         [JsonProperty("price")]
         public string Price { get; set; }
         [JsonProperty("price_raw")]
@@ -77,7 +78,7 @@ namespace HurtowniaDanych.Advertisement.Models
         [JsonProperty("env")]
         public string Env { get; set; }        
         public DateTime Inserted { get; set; }        
-        public DateTime LastUpdated { get; set; }
+        //public DateTime LastUpdated { get; set; }
 
         public override string ToString()
         {
@@ -92,7 +93,7 @@ namespace HurtowniaDanych.Advertisement.Models
             var nr_seats = (NrSeats?.Any() ?? false) ? string.Join(",", NrSeats) : "";
             var color = (Color?.Any() ?? false) ? string.Join(",", Color) : "";
             var registration = (Registration?.Any() ?? false) ? string.Join(",", Registration) : "";
-            var features = (Features?.Any() ?? false) ? string.Join(",", Features) : "";
+            //var features = (Features?.Any() ?? false) ? string.Join(",", Features) : "";
 
             return string.Format("ID: " + AdId +
                 "\nCena: " + PriceRaw +
@@ -117,8 +118,8 @@ namespace HurtowniaDanych.Advertisement.Models
                 "\nLiczba drzwi: " + door_count +
                 "\nLiczba miejsc: " + nr_seats +
                 "\nKolor: " + color +
-                "\nNumer rejestracyjny pojazdu: " + registration +
-                "\nWyposazenie: " + features
+                "\nNumer rejestracyjny pojazdu: " + registration //+
+                //"\nWyposazenie: " + features
             );
         }       
 
