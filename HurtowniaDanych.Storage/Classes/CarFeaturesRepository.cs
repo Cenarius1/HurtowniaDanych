@@ -1,8 +1,6 @@
-﻿using HurtowniaDanych.Advertisement.Models;
+﻿using HurtowniaDanych.Advertisement;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HurtowniaDanych.Storage
 {

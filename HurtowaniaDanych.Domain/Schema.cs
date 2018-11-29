@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HurtowniaDanych.Advertisement.Models
+namespace HurtowniaDanych.Advertisement
 {
     public class Schema
     {

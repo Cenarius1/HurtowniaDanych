@@ -3,9 +3,9 @@ using HtmlAgilityPack;
 using Newtonsoft.Json;
 using System;
 using HurtowniaDanych.Advertisement.Interfaces;
-using HurtowniaDanych.Advertisement.Models;
 using System.Collections.Generic;
 using Newtonsoft.Json.Serialization;
+using HurtowniaDanych.Advertisement;
 
 namespace HurtowniaDanych.Advertisement.Classes
 {

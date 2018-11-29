@@ -1,14 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
-namespace HurtowniaDanych.Advertisement.Models
+namespace HurtowniaDanych.Advertisement
 {
     //PascalCase
-     public class Features
+    public class Features
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

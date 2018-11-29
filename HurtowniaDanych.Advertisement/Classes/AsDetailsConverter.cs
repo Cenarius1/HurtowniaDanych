@@ -1,76 +1,17 @@
-﻿using HurtowniaDanych.Advertisement.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
+
 
 namespace HurtowniaDanych.Advertisement.Classes
 {
     class AsDetailsConverter : JsonConverter
     {
-        public override bool CanConvert(Type objectType)
-        {
-            //throw new NotImplementedException();
-            //return objectType == typeof(Details);
-            return true;
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.StartObject)
-            {
-                JObject item = JObject.Load(reader);
-
-                if (item["body_type"] != null)
-                {
-                    //var users = item["make"].ToObject<IList<Details>>(serializer);
-                    //int length = item["length"].Value<int>();
-
-
-                    //return new PagedList<User>(users, new PagingInformation(start, limit, length, total));
-
-                    var make = item["body_type"];
-                    Console.WriteLine(make);
-                    Console.WriteLine(item["body_type"].ToString());
-
-                    if (make.HasValues)
-                    {
-                        Console.WriteLine(make.First);
-                    }
-
-                    item["body_type"].Replace("asd");
-
-                    //return serializer.Deserialize<Details>(reader);
-                    
-                }
-            
-            }
-            else
-            {
-                JArray array = JArray.Load(reader);
-
-                var users = array.ToObject<Details>();
-                Console.WriteLine("end");
-                //return users;               
-
-                return serializer.Deserialize<Details>(reader);
-
-
-            }
-            return null;
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    class FixConverter : JsonConverter
-    {
+        private List<string> deserializationErrors = new List<string>();
+        private readonly bool isDebug = true;
         public override bool CanConvert(Type objectType)
         {
             return true;
@@ -78,38 +19,32 @@ namespace HurtowniaDanych.Advertisement.Classes
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            serializer.Error += delegate (object sender, ErrorEventArgs args)
+            {
+                deserializationErrors.Add(args.ErrorContext.Error.Message);
+                args.ErrorContext.Handled = true;
+            };
             serializer.DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate;
             serializer.MissingMemberHandling = MissingMemberHandling.Error;
 
             if (reader.TokenType == JsonToken.StartObject)
             {
-                JObject item = JObject.Load(reader);
+                // All json objects into key/value pairs
+                JObject items = JObject.Load(reader);
 
-                foreach(var x in item)
+                foreach(var item in items)
                 {
-                    JToken value = x.Value;                    
+                    JToken value = item.Value;                    
                     if(value.Type == JTokenType.Array) 
                     {
-                        if (x.Key != "features")
+                        if (item.Key != "features")
                         {
                             // Take first item from array
                             var vvv = value.First;
                             // Replace array with first item value
-                            x.Value.Replace(vvv);
+                            item.Value.Replace(vvv);
                         }
                         else {
-                            //var feats = JArray.FromObject(value);
-
-                            //Features convertedFeatures = new Features();
-                            //JObject json = JObject.FromObject(convertedFeatures);
-                            //foreach (JProperty property in json.Properties())
-                            //{
-
-                            //    bool has = feats.ToObject<List<string>>().Any(y => y == property.Name);
-                            //    if (has)
-                            //        property.Value = true;
-                            //}
-
                             var convertedFeatures = new Features();
                             var json = JObject.FromObject(convertedFeatures);
                             foreach (JProperty property in json.Properties())
@@ -119,19 +54,20 @@ namespace HurtowniaDanych.Advertisement.Classes
                                     property.Value = true;                                
                             }
 
-                            Console.WriteLine(json.ToString());
-                            x.Value.Replace(json);
+                            if (isDebug) Console.WriteLine("JObject: " + json.ToString());
+                            item.Value.Replace(json);
                         }
                             
                     }
                 }
-                
-                return item.ToObject<Details>();
+                if (isDebug) Console.WriteLine("Deserialization errors: " + string.Join(",", deserializationErrors.ToArray()));
+                return items.ToObject<Details>();
             }
             else
             {
                 JArray array = JArray.Load(reader);
                 var users = array.ToObject<Details>();
+                if (isDebug) Console.WriteLine("Deserialization errors: " + string.Join(",", deserializationErrors.ToArray()));
                 return users;                
             }
         }

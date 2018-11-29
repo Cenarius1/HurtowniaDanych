@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using HurtowniaDanych.Advertisement.Interfaces;
-using HurtowniaDanych.Advertisement.Models;
+using Newtonsoft.Json;
 
 namespace HurtowniaDanych.Advertisement.Classes
 {
     public class AdDetails : IAd<Details>
     {
         private Details ad;
-        private List<string> deserializationErrors = new List<string>();
-        private readonly bool isDebug = true;
+        private readonly bool isDebug = false;
 
         public void ProcessUrl(string url)
         {
@@ -29,7 +25,6 @@ namespace HurtowniaDanych.Advertisement.Classes
             foreach (var x in scriptNodes)
             {
                 var InnerHtml = x.InnerHtml;
-
                 string pattern = @"(?<targeting>GPT\.targeting\s=\s)(?<details>{.*?})";
                 var match = Regex.Match(InnerHtml, pattern);
                 if (match.Success)
@@ -37,7 +32,7 @@ namespace HurtowniaDanych.Advertisement.Classes
                     if (isDebug) Console.WriteLine(match.Groups["details"].ToString());
                     try
                     {
-                        ad = JsonConvert.DeserializeObject<Details>(match.Groups["details"].ToString(), new FixConverter());
+                        ad = JsonConvert.DeserializeObject<Details>(match.Groups["details"].ToString(), new AsDetailsConverter());
 
                     }
                     catch (JsonSerializationException ex)
@@ -46,15 +41,12 @@ namespace HurtowniaDanych.Advertisement.Classes
                     }
                 }
 
-            }
-
-            if(isDebug) Console.WriteLine("Deserialization errors: " + string.Join(",", deserializationErrors.ToArray()));
+            }            
         }
 
         public Details RetrieveAd()
         {
             return ad;
         }
-
     }
 }

@@ -1,12 +1,12 @@
-﻿using HurtowniaDanych.Advertisement.Models;
+﻿using HurtowniaDanych.Advertisement;
 using Microsoft.EntityFrameworkCore;
 
 /// <summary>
 /// DbContext derived class
 /// </summary>
-namespace HurtowniaDanych.Storage {
+namespace HurtowniaDanych.Storage
+{
     public class DataWarehouseContext : DbContext {
-        //public DbSet<CarTopic> Cars { get; set; }
 
         public DbSet<Details> CarDetails { get; set; }
 

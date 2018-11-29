@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HurtowniaDanych.Advertisement.Interfaces
+﻿namespace HurtowniaDanych.Advertisement.Interfaces
 {
     public abstract class IAdFactory<T>
     {
