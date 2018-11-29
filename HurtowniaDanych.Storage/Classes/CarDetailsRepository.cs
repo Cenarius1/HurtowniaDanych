@@ -23,7 +23,6 @@ namespace HurtowniaDanych.Storage
             };
 
             advert.Inserted = DateTime.Now;
-            //advert.LastUpdated = DateTime.Now;
             context.Add(advert);            
             return advert;
         }

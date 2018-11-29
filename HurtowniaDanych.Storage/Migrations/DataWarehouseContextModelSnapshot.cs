@@ -19,212 +19,6 @@ namespace HurtowniaDanych.Storage.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("HurtowaniaDanych.Domain.CarTopic", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("ABS");
-
-                    b.Property<bool>("AUX");
-
-                    b.Property<bool>("ActiveCruiseControl");
-
-                    b.Property<string>("AddDate");
-
-                    b.Property<bool>("AdjustableSuspension");
-
-                    b.Property<bool>("AirConditioningAutomatic");
-
-                    b.Property<bool>("AirConditioningFourZone");
-
-                    b.Property<bool>("AirConditioningManual");
-
-                    b.Property<bool>("AirConditioningTwoZone");
-
-                    b.Property<bool>("AirCurtains");
-
-                    b.Property<bool>("Alarm");
-
-                    b.Property<bool>("AlloyWheels");
-
-                    b.Property<bool>("AntiFogLights");
-
-                    b.Property<bool>("Bluetooth");
-
-                    b.Property<string>("BodyType");
-
-                    b.Property<string>("Brand");
-
-                    b.Property<bool>("CD");
-
-                    b.Property<bool>("CDChanger");
-
-                    b.Property<string>("Category");
-
-                    b.Property<bool>("CentralLock");
-
-                    b.Property<string>("City");
-
-                    b.Property<string>("Color");
-
-                    b.Property<string>("Cost");
-
-                    b.Property<string>("Country");
-
-                    b.Property<bool>("CruiseControl");
-
-                    b.Property<bool>("DVD");
-
-                    b.Property<bool>("DaytimeLights");
-
-                    b.Property<bool>("DeadZoneSensor");
-
-                    b.Property<string>("Description");
-
-                    b.Property<int>("DoorsCount");
-
-                    b.Property<bool>("DriverAirbag");
-
-                    b.Property<bool>("ESP");
-
-                    b.Property<bool>("ElectricFrontWindows");
-
-                    b.Property<bool>("ElectricRearMirror");
-
-                    b.Property<bool>("ElectricRearWindows");
-
-                    b.Property<bool>("ElectricSideMirros");
-
-                    b.Property<bool>("ElectricallyAdjustableSeats");
-
-                    b.Property<int>("EngineDisplacement");
-
-                    b.Property<bool>("FactoryRadio");
-
-                    b.Property<string>("FirstRegistration");
-
-                    b.Property<bool>("FrontParkingSensors");
-
-                    b.Property<bool>("FrontSideAirbags");
-
-                    b.Property<string>("Fueltype");
-
-                    b.Property<bool>("GPS");
-
-                    b.Property<bool>("HUD");
-
-                    b.Property<bool>("HeatedFrontMirror");
-
-                    b.Property<bool>("HeatedFrontSeats");
-
-                    b.Property<bool>("HeatedRearSeats");
-
-                    b.Property<bool>("HeatedSiteMirrors");
-
-                    b.Property<bool>("Hook");
-
-                    b.Property<bool>("Immobilizer");
-
-                    b.Property<bool>("IsBrandNew");
-
-                    b.Property<bool>("IsFirstOwner");
-
-                    b.Property<bool>("IsMetalic");
-
-                    b.Property<bool>("IsPearly");
-
-                    b.Property<bool>("IsRegisteredInPoland");
-
-                    b.Property<bool>("IsServicedInAuthorizedService");
-
-                    b.Property<bool>("Isofix");
-
-                    b.Property<bool>("KneesAirbag");
-
-                    b.Property<bool>("LED");
-
-                    b.Property<bool>("LaneAssistant");
-
-                    b.Property<DateTime>("LayerDate");
-
-                    b.Property<bool>("LeatherUpholstery");
-
-                    b.Property<bool>("MP3");
-
-                    b.Property<int>("Mileage");
-
-                    b.Property<string>("Model");
-
-                    b.Property<bool>("MultifunctionSteeringWheel");
-
-                    b.Property<bool>("NotFactoryRadio");
-
-                    b.Property<string>("OfferType");
-
-                    b.Property<bool>("OnBoardComputer");
-
-                    b.Property<bool>("PanoramicRoof");
-
-                    b.Property<bool>("ParkingAssistant");
-
-                    b.Property<bool>("ParkingHeater");
-
-                    b.Property<bool>("PassengerAirbag");
-
-                    b.Property<int>("PlacesCount");
-
-                    b.Property<int>("Power");
-
-                    b.Property<bool>("PowerSteering");
-
-                    b.Property<bool>("RainSensor");
-
-                    b.Property<bool>("RearParkingSensors");
-
-                    b.Property<bool>("RearSideAirbags");
-
-                    b.Property<string>("RegistrationNumber");
-
-                    b.Property<bool>("ReversingCamera");
-
-                    b.Property<bool>("RoofRails");
-
-                    b.Property<bool>("SDCard");
-
-                    b.Property<bool>("ShiftingPaddles");
-
-                    b.Property<bool>("SpeedLimiter");
-
-                    b.Property<bool>("StartStopSystem");
-
-                    b.Property<bool>("SunRoof");
-
-                    b.Property<bool>("TVTuner");
-
-                    b.Property<bool>("TintedWindows");
-
-                    b.Property<bool>("TractionControl");
-
-                    b.Property<string>("TransmisionType");
-
-                    b.Property<bool>("TwilightSensor");
-
-                    b.Property<bool>("USBPort");
-
-                    b.Property<string>("VIN");
-
-                    b.Property<bool>("VelorUpholstery");
-
-                    b.Property<bool>("XenonLights");
-
-                    b.Property<int>("YearManufacture");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cars");
-                });
-
             modelBuilder.Entity("HurtowniaDanych.Advertisement.Models.Details", b =>
                 {
                     b.Property<long>("AdId");
@@ -431,6 +225,117 @@ namespace HurtowniaDanych.Storage.Migrations
                     b.HasKey("AdvertId");
 
                     b.ToTable("CarFeatures");
+                });
+
+            modelBuilder.Entity("HurtowniaDanych.Advertisement.Models.Mileages", b =>
+                {
+                    b.Property<long>("AdId");
+
+                    b.Property<string>("Type");
+
+                    b.Property<string>("UnitCode");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("AdId");
+
+                    b.ToTable("CarSchema");
+                });
+
+            modelBuilder.Entity("HurtowniaDanych.Advertisement.Models.Offers", b =>
+                {
+                    b.Property<long>("AdId");
+
+                    b.Property<string>("Price");
+
+                    b.Property<string>("PriceCurrency");
+
+                    b.Property<string>("Type")
+                        .HasColumnName("Offers_Type");
+
+                    b.HasKey("AdId");
+
+                    b.ToTable("CarSchema");
+                });
+
+            modelBuilder.Entity("HurtowniaDanych.Advertisement.Models.Schema", b =>
+                {
+                    b.Property<long>("AdId");
+
+                    b.Property<string>("BodyType");
+
+                    b.Property<string>("Brand");
+
+                    b.Property<string>("Color");
+
+                    b.Property<string>("Context");
+
+                    b.Property<string>("DateVehicleFirstRegistered");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("FuelType");
+
+                    b.Property<DateTime>("Inserted");
+
+                    b.Property<string>("ItemCondition");
+
+                    b.Property<string>("Model");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("NumberOfDoors");
+
+                    b.Property<string>("Type")
+                        .HasColumnName("Schema_Type");
+
+                    b.Property<string>("Url");
+
+                    b.Property<string>("VehicleIdentificationNumber");
+
+                    b.Property<string>("VehicleSeatingCapacity");
+
+                    b.HasKey("AdId");
+
+                    b.ToTable("CarSchema");
+                });
+
+            modelBuilder.Entity("HurtowniaDanych.Advertisement.Models.VehicleEng", b =>
+                {
+                    b.Property<long>("AdId");
+
+                    b.Property<string>("EngineDisplacement");
+
+                    b.Property<string>("Type")
+                        .HasColumnName("VehicleEng_Type");
+
+                    b.HasKey("AdId");
+
+                    b.ToTable("CarSchema");
+                });
+
+            modelBuilder.Entity("HurtowniaDanych.Advertisement.Models.Mileages", b =>
+                {
+                    b.HasOne("HurtowniaDanych.Advertisement.Models.Schema", "Schema")
+                        .WithOne("MileageFromOdometer")
+                        .HasForeignKey("HurtowniaDanych.Advertisement.Models.Mileages", "AdId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HurtowniaDanych.Advertisement.Models.Offers", b =>
+                {
+                    b.HasOne("HurtowniaDanych.Advertisement.Models.Schema", "Schema")
+                        .WithOne("Offers")
+                        .HasForeignKey("HurtowniaDanych.Advertisement.Models.Offers", "AdId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HurtowniaDanych.Advertisement.Models.VehicleEng", b =>
+                {
+                    b.HasOne("HurtowniaDanych.Advertisement.Models.Schema", "Schema")
+                        .WithOne("VehicleEngine")
+                        .HasForeignKey("HurtowniaDanych.Advertisement.Models.VehicleEng", "AdId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

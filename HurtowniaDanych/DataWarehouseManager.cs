@@ -32,6 +32,7 @@ namespace HurtowniaDanych
         {
             var carDetailsRepository = new CarDetailsRepository(new DataWarehouseContext());
             var carFeaturesRepository = new CarFeaturesRepository(new DataWarehouseContext());
+            var adSchemaRepository = new AdSchemaRepository(new DataWarehouseContext());
 
             if (LinkList.Any())
             {
@@ -41,13 +42,18 @@ namespace HurtowniaDanych
                     // Retrieve ad and bind to Details model
                     IAd<Details> advertisment = adFactory.MakeAd(url);
                     Console.WriteLine("\nPrint Add\n" + advertisment.RetrieveAd() + "\n");
-
-                    // Retrieve ad and bind to Schema model
-                    //IAd<Schema> advert = adSchemaFactory.MakeAd(url);
-                    //Console.WriteLine("\nPrint Add\n" + advert.RetrieveAd());
-
                     carDetailsRepository.Insert(advertisment.RetrieveAd());
 
+                    // Retrieve ad and bind to Schema model
+                    IAd<Schema> advert = adSchemaFactory.MakeAd(url);
+                    Console.WriteLine("\nPrint Add\n" + advert.RetrieveAd());
+                    var schema = advert.RetrieveAd();
+                    if (schema != null)
+                    {
+                        schema.AdId = advertisment.RetrieveAd().AdId;
+                        adSchemaRepository.Insert(advert.RetrieveAd());
+                    }
+                    
                     var features = advertisment.RetrieveAd().Features;
                     if (features != null)
                     {
@@ -58,6 +64,7 @@ namespace HurtowniaDanych
 
                 carDetailsRepository.SaveChanges();
                 carFeaturesRepository.SaveChanges();
+                adSchemaRepository.SaveChanges();
 
             } else {
                 Console.WriteLine("List is empty.");

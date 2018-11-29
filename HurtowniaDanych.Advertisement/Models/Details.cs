@@ -78,7 +78,6 @@ namespace HurtowniaDanych.Advertisement.Models
         [JsonProperty("env")]
         public string Env { get; set; }        
         public DateTime Inserted { get; set; }        
-        //public DateTime LastUpdated { get; set; }
 
         public override string ToString()
         {

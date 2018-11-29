@@ -1,9 +1,16 @@
 ﻿using Newtonsoft.Json;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HurtowniaDanych.Advertisement.Models
 {
     public class Schema
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [JsonProperty("ad_id")]
+        public long AdId { get; set; }
         [JsonProperty("@context")]
         public string Context { get; set; }
         [JsonProperty("@type")]
@@ -40,6 +47,7 @@ namespace HurtowniaDanych.Advertisement.Models
         public Offers Offers { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
+        public DateTime Inserted { get; set; }
 
         public override string ToString()
         {
@@ -55,9 +63,9 @@ namespace HurtowniaDanych.Advertisement.Models
                 "\nLiczba miejsc: " + VehicleSeatingCapacity +
                 "\nVIN: " + VehicleIdentificationNumber +
                 "\nPierwsza rejestracja: " + DateVehicleFirstRegistered +
-                "\nPojemnosc skokowa: " + VehicleEngine.EngineDisplacement +
+                //"\nPojemnosc skokowa: " + VehicleEngine.EngineDisplacement +
                 "\nPrzebieg: " + MileageFromOdometer.Value + " " + MileageFromOdometer.UnitCode +
-                "\nCena: " + Offers.Price + " " + Offers.PriceCurrency +
+                //"\nCena: " + Offers.Price + " " + Offers.PriceCurrency +
                 "\nOpis: " + Description
                 );
         }
@@ -69,16 +77,28 @@ namespace HurtowniaDanych.Advertisement.Models
         public string Type { get; set; }
         [JsonProperty("engineDisplacement")]
         public string EngineDisplacement { get; set; }
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [JsonProperty("ad_id")]
+        public long AdId { get; set; }
+        public Schema Schema { get; set; }
     }
 
     public class Mileages
-    {
+    {       
         [JsonProperty("@type")]
         public string Type { get; set; }
         [JsonProperty("unitCode")]
         public string UnitCode { get; set; }
         [JsonProperty("value")]
         public string Value { get; set; }
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [JsonProperty("ad_id")]
+        public long AdId { get; set; }
+        public Schema Schema { get; set; }
     }
 
     public class Offers
@@ -89,5 +109,11 @@ namespace HurtowniaDanych.Advertisement.Models
         public string Price { get; set; }
         [JsonProperty("priceCurrency")]
         public string PriceCurrency { get; set; }
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [JsonProperty("ad_id")]
+        public long AdId { get; set; }
+        public Schema Schema { get; set; }
     }
 }

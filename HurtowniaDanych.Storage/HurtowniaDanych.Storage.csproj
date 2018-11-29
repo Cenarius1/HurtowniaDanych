@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20181121225131_HDProjectMigration.cs" />
     <Compile Remove="Migrations\20181127220227_HDProjectMigration.cs" />
     <Compile Remove="Migrations\20181127225718_HDProjectMigration.cs" />
+    <Compile Remove="Migrations\20181127230144_HDProjectMigration.cs" />
+    <Compile Remove="Migrations\20181128213600_HDProjectMigration.cs" />
+    <Compile Remove="Migrations\20181128223308_HDProjectMigration.cs" />
+    <Compile Remove="Migrations\20181128225218_HDProjectMigration.cs" />
   </ItemGroup>
 
   <ItemGroup>
