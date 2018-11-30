@@ -1,5 +1,4 @@
 ﻿using HurtowniaDanych.Advertisement.Interfaces;
-using HurtowniaDanych.Advertisement.Models;
 
 namespace HurtowniaDanych.Advertisement.Classes
 {

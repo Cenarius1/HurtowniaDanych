@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace HurtowniaDanych.Advertisement.Models
+namespace HurtowniaDanych.Advertisement
 {
     public class Details
     {
@@ -19,60 +20,62 @@ namespace HurtowniaDanych.Advertisement.Models
         public string Region { get; set; }
         [JsonProperty("subregion")]
         public string Subregion { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [JsonProperty("ad_id")]
-        public string AdId { get; set; }
+        public long AdId { get; set; }
         [JsonProperty("user_id")]
         public string UserId { get; set; }
         [JsonProperty("city")]
         public string City { get; set; }
         [JsonProperty("make")]
-        public string[] Make { get; set; }
+        public string Make { get; set; }
         [JsonProperty("model")]
-        public string[] Model { get; set; }
+        public string Model { get; set; }
         [JsonProperty("engine_code")]
-        public IList<string> EngineCode { get; set; }
+        public string EngineCode { get; set; }
         [JsonProperty("version")]
-        public IList<string> Version { get; set; }
+        public string Version { get; set; }
         [JsonProperty("year")]
-        public string[] Year { get; set; }
+        public string Year { get; set; }
         [JsonProperty("mileage")]
-        public string[] Mileage { get; set; }
+        public int Mileage { get; set; }
         [JsonProperty("engine_capacity")]
-        public IList<string> EngineCapacity { get; set; }        
+        public string EngineCapacity { get; set; }        
         [JsonProperty("vin")]
-        public IList<string> Vin { get; set; }
+        public string Vin { get; set; }
         [JsonProperty("fuel_type")]
-        public string[] FuelType { get; set; }
+        public string FuelType { get; set; }
         [JsonProperty("engine_power")]
-        public string[] EnginePower { get; set; }
+        public string EnginePower { get; set; }
         [JsonProperty("gearbox")]
-        public string[] Gearbox { get; set; }
+        public string Gearbox { get; set; }
         [JsonProperty("transmission")]
-        public IList<string> Transmission { get; set; }
-        [JsonProperty("body_type")]
-        public string[] BodyType { get; set; }
-        [DefaultValue(default(IList<string>))]
+        public string Transmission { get; set; }
+        [JsonProperty("body_type")]        
+        public string BodyType { get; set; }        
         [JsonProperty("door_count")]
-        public IList<string> DoorCount { get; set; }
+        public string DoorCount { get; set; }
         [JsonProperty("nr_seats")]
-        public IList<string> NrSeats { get; set; }
+        public string NrSeats { get; set; }
         [JsonProperty("color")]
-        public string[] Color { get; set; }
+        public string Color { get; set; }
+        [NotMapped]
         [JsonProperty("features")]
-        public IList<string> Features { get; set; }
+        public Features Features { get; set; }
         [JsonProperty("price")]
-        public string[] Price { get; set; }
+        public string Price { get; set; }
         [JsonProperty("price_raw")]
         public string PriceRaw { get; set; }
         [JsonProperty("country_origin")]
-        public IList<string> CountryOrigin { get; set; }
+        public string CountryOrigin { get; set; }
         [JsonProperty("registration")]
-        public IList<string> Registration { get; set; }
+        public string Registration { get; set; }
         [JsonProperty("user_status")]
         public int UserStatus { get; set; }
         [JsonProperty("env")]
-
-        public string Env { get; set; }
+        public string Env { get; set; }        
+        public DateTime Inserted { get; set; }        
 
         public override string ToString()
         {
@@ -87,7 +90,7 @@ namespace HurtowniaDanych.Advertisement.Models
             var nr_seats = (NrSeats?.Any() ?? false) ? string.Join(",", NrSeats) : "";
             var color = (Color?.Any() ?? false) ? string.Join(",", Color) : "";
             var registration = (Registration?.Any() ?? false) ? string.Join(",", Registration) : "";
-            var features = (Features?.Any() ?? false) ? string.Join(",", Features) : "";
+            //var features = (Features?.Any() ?? false) ? string.Join(",", Features) : "";
 
             return string.Format("ID: " + AdId +
                 "\nCena: " + PriceRaw +
@@ -96,24 +99,24 @@ namespace HurtowniaDanych.Advertisement.Models
                 "\nKategoria: " + Category +
                 "\nWojewodztwo: " + Region +
                 "\nMiasto: " + City +
-                "\nMarka pojazdu: " + Make.GetValue(0) +
-                "\nModel pojazdu: " + Model.GetValue(0) +
+                "\nMarka pojazdu: " + Make +
+                "\nModel pojazdu: " + Model +
                 "\nKod silnika: " + engine_code +
                 "\nWersja: " + version +
-                "\nRok produkcji: " + Year.GetValue(0) +
-                "\nPrzebieg: " + Mileage.GetValue(0) +
+                "\nRok produkcji: " + Year +
+                "\nPrzebieg: " + Mileage +
                 "\nPojemnosc skokowa: " + engine_capacity +
                 "\nVin: " + vin +
-                "\nRodzaj paliwa: " + FuelType.GetValue(0) +
+                "\nRodzaj paliwa: " + FuelType +
                 "\nMoc: " + engine_power +
                 "\nSkrzynia biegow: " + gearbox +
-                "\nNaped: " + transmission +
-                "\nTyp: " + BodyType.GetValue(0) +
+                "\nNaped: " + transmission +                
+                "\nTyp: " + BodyType +
                 "\nLiczba drzwi: " + door_count +
                 "\nLiczba miejsc: " + nr_seats +
                 "\nKolor: " + color +
-                "\nNumer rejestracyjny pojazdu: " + registration +
-                "\nWyposazenie: " + features
+                "\nNumer rejestracyjny pojazdu: " + registration //+
+                //"\nWyposazenie: " + features
             );
         }       
 
