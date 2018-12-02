@@ -22,25 +22,22 @@ namespace DWH {
         public void Launch() {
             string baseUrl = null;
 
+            var urls = ExtractUrls(baseUrl);
+
+            var extractCarDetails = ExtractCarDetails(urls);
+
+            var loadCarDetails = TransformCarDetails(extractCarDetails);
+
+            LoadCarDetails(loadCarDetails);
+        }
+
+        private List<string> ExtractUrls(string baseUrl) {
             Console.WriteLine("Obtaining links from: {0}", baseUrl);
-
             var urls = extractCarDetailUrlsProcess.Process(baseUrl);
+            return urls;
+        }
 
-            Console.WriteLine("Starting extracting details from links...");
-            var extractCarDetails = new List<ExtractCarDetail>();
-            foreach (var url in urls) {
-                Console.WriteLine("Extracting details from link: {0}", url);
-                var extractCarDetail = extractProcess.Process(url);
-                extractCarDetails.Add(extractCarDetail);
-            }
-
-            Console.WriteLine("Starting transform process...");
-            var loadCarDetails = new List<LoadCarDetail>();
-            foreach (var extractCarDetail in extractCarDetails) {
-                var loadCarDetail = transformProcess.Process(extractCarDetail);
-                loadCarDetails.Add(loadCarDetail);
-            }
-
+        private void LoadCarDetails(List<LoadCarDetail> loadCarDetails) {
             Console.WriteLine("Starting load process...");
             var success = loadProcess.Process(loadCarDetails);
 
@@ -49,6 +46,29 @@ namespace DWH {
             } else {
                 Console.WriteLine("ETL Process occured problems during work, check console logs for details.");
             }
+        }
+
+        private List<LoadCarDetail> TransformCarDetails(List<ExtractCarDetail> extractCarDetails) {
+            Console.WriteLine("Starting transform process...");
+            var loadCarDetails = new List<LoadCarDetail>();
+            foreach (var extractCarDetail in extractCarDetails) {
+                var loadCarDetail = transformProcess.Process(extractCarDetail);
+                loadCarDetails.Add(loadCarDetail);
+            }
+
+            return loadCarDetails;
+        }
+
+        private List<ExtractCarDetail> ExtractCarDetails(List<string> urls) {
+            Console.WriteLine("Starting extracting details from links...");
+            var extractCarDetails = new List<ExtractCarDetail>();
+            foreach (var url in urls) {
+                Console.WriteLine("Extracting details from link: {0}", url);
+                var extractCarDetail = extractProcess.Process(url);
+                extractCarDetails.Add(extractCarDetail);
+            }
+
+            return extractCarDetails;
         }
     }
 }
