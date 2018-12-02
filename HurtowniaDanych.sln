@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HurtowniaDanych.Storage", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HurtowaniaDanych.Domain", "HurtowaniaDanych.Domain\HurtowaniaDanych.Domain.csproj", "{79961CD4-0995-4A38-B051-79FBE8BF35AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HurtowniaDanych.Advertisement", "HurtowniaDanych.Advertisement\HurtowniaDanych.Advertisement.csproj", "{B26426A7-FE2D-449F-AA42-55254A96B1CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HurtowniaDanych.Advertisement", "HurtowniaDanych.Advertisement\HurtowniaDanych.Advertisement.csproj", "{B26426A7-FE2D-449F-AA42-55254A96B1CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HurtowniaDanych.GUI", "HurtowniaDanych.GUI\HurtowniaDanych.GUI.csproj", "{7D4CE253-7CA8-416C-A720-17BDD38FC42E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B26426A7-FE2D-449F-AA42-55254A96B1CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B26426A7-FE2D-449F-AA42-55254A96B1CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B26426A7-FE2D-449F-AA42-55254A96B1CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D4CE253-7CA8-416C-A720-17BDD38FC42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D4CE253-7CA8-416C-A720-17BDD38FC42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D4CE253-7CA8-416C-A720-17BDD38FC42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D4CE253-7CA8-416C-A720-17BDD38FC42E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

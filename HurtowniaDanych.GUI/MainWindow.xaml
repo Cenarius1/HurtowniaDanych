@@ -1,0 +1,25 @@
+﻿<Window x:Class="HurtowniaDanych.GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HurtowniaDanych.GUI"
+        mc:Ignorable="d"
+        Title="OTOMOTO - Hurtownia Danych" Height="565" Width="898" Background="#FF1DA06B">
+    <Grid x:Name="grid_main">
+        <Button x:Name="btn_start" Content="Start" HorizontalAlignment="Left" Margin="39,52,0,0" VerticalAlignment="Top" Width="103" Height="35" Click="btn_start_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                    <GradientStop Color="#FFCDCDCD" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btn_serach" Content="Szukaj" HorizontalAlignment="Left" Margin="740,47,0,0" VerticalAlignment="Top" Width="94" Height="28" Click="btn_serach_Click"/>
+        <TextBox x:Name="tbx_seatch" HorizontalAlignment="Left" Height="28" Margin="546,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167"/>
+        <DataGrid x:Name="dataGrid" Height="356" Margin="39,149,0,0" IsReadOnly="True" VerticalAlignment="Top" Width="795" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" CanUserAddRows="False"  />
+
+    </Grid>
+</Window>
