@@ -11,6 +11,7 @@ namespace DWH.ETL.Transform {
             features = ConvertFeaturesListToDictionary(input.Features);
 
             var loadCarDetail = new LoadCarDetail() {
+                Id = input.AdId,
                 //DETAILS
                 BodyType = input.BodyType,
                 Category = input.Category,

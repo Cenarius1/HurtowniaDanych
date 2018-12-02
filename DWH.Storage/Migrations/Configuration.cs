@@ -10,7 +10,6 @@ namespace DWH.Storage.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "DWH.Storage.DataWarehouseContext";
         }
 
         protected override void Seed(DWH.Storage.DataWarehouseContext context)

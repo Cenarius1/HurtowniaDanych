@@ -51,9 +51,9 @@
     <Compile Include="CarDetailsRepository.cs" />
     <Compile Include="DataWarehouseContext.cs" />
     <Compile Include="Interface\IGenericRepository.cs" />
-    <Compile Include="Migrations\201812021311558_InitialCreate.cs" />
-    <Compile Include="Migrations\201812021311558_InitialCreate.Designer.cs">
-      <DependentUpon>201812021311558_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201812021920248_Initial.cs" />
+    <Compile Include="Migrations\201812021920248_Initial.Designer.cs">
+      <DependentUpon>201812021920248_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,8 +68,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812021311558_InitialCreate.resx">
-      <DependentUpon>201812021311558_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812021920248_Initial.resx">
+      <DependentUpon>201812021920248_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

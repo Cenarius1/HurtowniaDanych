@@ -4,6 +4,7 @@ using DWH.ETL.Load;
 using DWH.ETL.Transform;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DWH {
     public class ETLProcessManager {
@@ -20,7 +21,7 @@ namespace DWH {
         }
 
         public void Launch() {
-            string baseUrl = null;
+            string baseUrl = "https://www.otomoto.pl/osobowe/bmw/?search[filter_float_year%3Ato]=2018&page=";
 
             var urls = ExtractUrls(baseUrl);
 
@@ -62,11 +63,16 @@ namespace DWH {
         private List<ExtractCarDetail> ExtractCarDetails(List<string> urls) {
             Console.WriteLine("Starting extracting details from links...");
             var extractCarDetails = new List<ExtractCarDetail>();
-            foreach (var url in urls) {
+
+            Parallel.ForEach(urls, (url) => {
                 Console.WriteLine("Extracting details from link: {0}", url);
                 var extractCarDetail = extractProcess.Process(url);
                 extractCarDetails.Add(extractCarDetail);
-            }
+            });
+
+            //foreach (var url in urls) {
+
+            //}
 
             return extractCarDetails;
         }

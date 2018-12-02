@@ -14,6 +14,10 @@ namespace DWH.Storage {
         }
 
         public LoadCarDetail Insert(LoadCarDetail dbo) {
+            if (context.CarDetails.Any(i => i.Id == dbo.Id)) {
+                return null;
+            };
+
             context.CarDetails.Add(dbo);
 
             return dbo;

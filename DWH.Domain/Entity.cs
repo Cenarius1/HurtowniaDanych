@@ -5,8 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace DWH.Domain {
     public abstract class Entity {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long Id { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public Guid RowGuid { get; set; }
         public DateTime InsertedDttm { get; set; }
     }
 }

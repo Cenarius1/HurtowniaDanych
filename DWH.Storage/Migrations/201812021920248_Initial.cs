@@ -3,7 +3,7 @@ namespace DWH.Storage.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -11,7 +11,7 @@ namespace DWH.Storage.Migrations
                 "dbo.CarDetails",
                 c => new
                     {
-                        Id = c.Guid(nullable: false, identity: true),
+                        Id = c.Long(nullable: false),
                         Title = c.String(),
                         OfferSeek = c.String(),
                         PrivateBusiness = c.String(),
@@ -105,6 +105,7 @@ namespace DWH.Storage.Migrations
                         CruiseControl = c.Boolean(nullable: false),
                         SteeringWhellComands = c.Boolean(nullable: false),
                         CdChanger = c.Boolean(nullable: false),
+                        RowGuid = c.Guid(nullable: false, identity: true),
                         InsertedDttm = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

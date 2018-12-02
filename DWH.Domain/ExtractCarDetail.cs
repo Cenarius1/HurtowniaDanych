@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace DWH.Domain {
     public class ExtractCarDetail {
+        [JsonProperty("ad_id")]
+        public long AdId { get; set; }
         [JsonProperty("title")]
         public string Title { get; set; }
         [JsonProperty("offer_seek")]

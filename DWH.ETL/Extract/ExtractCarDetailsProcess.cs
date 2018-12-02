@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace DWH.ETL.Extract {
     public class ExtractCarDetailsProcess : IETLProcess<string, ExtractCarDetail> {

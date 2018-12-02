@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DWH.ETL.Load {
     public class LoadProcess : IETLProcess<List<LoadCarDetail>, bool> {
-        private DateTime loadTimestamp;
+        private readonly DateTime loadTimestamp;
         public LoadProcess() {
             loadTimestamp = DateTime.Now;
         }
