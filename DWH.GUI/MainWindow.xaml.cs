@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 
-namespace HurtowniaDanych.GUI
+namespace DWH.GUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

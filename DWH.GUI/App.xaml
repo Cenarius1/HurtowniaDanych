@@ -1,7 +1,7 @@
-﻿<Application x:Class="HurtowniaDanych.GUI.App"
+﻿<Application x:Class="DWH.GUI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:HurtowniaDanych.GUI"
+             xmlns:local="clr-namespace:DWH.GUI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          
