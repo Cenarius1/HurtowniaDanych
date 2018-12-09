@@ -2,8 +2,11 @@
 using DWH.ETL.Extract;
 using DWH.ETL.Load;
 using DWH.ETL.Transform;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DWH {
@@ -13,6 +16,9 @@ namespace DWH {
         private readonly TransformProcess transformProcess;
         private readonly LoadProcess loadProcess;
 
+        private const string extractFile = "extract.txt";
+        private const string transformFile = "transform.txt";
+
         public ETLProcessManager() {
             extractCarDetailUrlsProcess = new ExtractCarDetailUrlsProcess();
             extractProcess = new ExtractCarDetailsProcess();
@@ -20,16 +26,23 @@ namespace DWH {
             loadProcess = new LoadProcess();
         }
 
-        public void Launch() {
-            string baseUrl = "https://www.otomoto.pl/osobowe/bmw/?search[filter_float_year%3Ato]=2018&page=";
+        public void LaunchAll(string baseUrl) {
+            LaunchExtract(baseUrl);
+            LaunchTransform();
+            LaunchLoad();
+        }
 
+        public void LaunchExtract(string baseUrl) {
             var urls = ExtractUrls(baseUrl);
+            ExtractCarDetails(urls, extractFile);
+        }
 
-            var extractCarDetails = ExtractCarDetails(urls);
+        public void LaunchTransform() {
+            TransformCarDetails(extractFile, transformFile);
+        }
 
-            var loadCarDetails = TransformCarDetails(extractCarDetails);
-
-            LoadCarDetails(loadCarDetails);
+        public void LaunchLoad() {
+            LoadCarDetails(transformFile);
         }
 
         private List<string> ExtractUrls(string baseUrl) {
@@ -38,31 +51,44 @@ namespace DWH {
             return urls;
         }
 
-        private void LoadCarDetails(List<LoadCarDetail> loadCarDetails) {
+        private void LoadCarDetails(string sourceFile) {
             Console.WriteLine("Starting load process...");
-            var success = loadProcess.Process(loadCarDetails);
+            var loadCarDetailsJson = File.ReadAllLines(sourceFile);
+
+            var loadCarDertails = new List<LoadCarDetail>();
+            foreach (var json in loadCarDetailsJson) {
+                loadCarDertails.Add(JsonConvert.DeserializeObject<LoadCarDetail>(json));
+            }
+
+            var success = loadProcess.Process(loadCarDertails);
 
             if (success) {
                 Console.WriteLine("ETL Process finished succesfully");
+                File.WriteAllText(sourceFile, string.Empty); //Clear source file
             } else {
                 Console.WriteLine("ETL Process occured problems during work, check console logs for details.");
             }
         }
 
-        private List<LoadCarDetail> TransformCarDetails(List<ExtractCarDetail> extractCarDetails) {
+        private void TransformCarDetails(string inputFile, string outputFile) {
             Console.WriteLine("Starting transform process...");
-            var loadCarDetails = new List<LoadCarDetail>();
-            foreach (var extractCarDetail in extractCarDetails) {
-                var loadCarDetail = transformProcess.Process(extractCarDetail);
-                loadCarDetails.Add(loadCarDetail);
+
+            var rawData =  File.ReadAllLines(inputFile).ToList();
+
+            var loadCarDetails = new List<string>();
+
+            foreach (var data in rawData) {
+                var loadCarDetail = transformProcess.Process(data);
+                loadCarDetails.Add(JsonConvert.SerializeObject(loadCarDetail));
             }
 
-            return loadCarDetails;
+            File.AppendAllLines(outputFile, loadCarDetails);
+            File.WriteAllText(inputFile, string.Empty); //Clear source file
         }
 
-        private List<ExtractCarDetail> ExtractCarDetails(List<string> urls) {
+        private void ExtractCarDetails(List<string> urls, string targetFile) {
             Console.WriteLine("Starting extracting details from links...");
-            var extractCarDetails = new List<ExtractCarDetail>();
+            var extractCarDetails = new List<string>();
 
             Parallel.ForEach(urls, (url) => {
                 Console.WriteLine("Extracting details from link: {0}", url);
@@ -70,11 +96,7 @@ namespace DWH {
                 extractCarDetails.Add(extractCarDetail);
             });
 
-            //foreach (var url in urls) {
-
-            //}
-
-            return extractCarDetails;
+            File.AppendAllLines(targetFile, extractCarDetails);
         }
     }
 }

@@ -47,10 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extract\DetailsConverter.cs" />
+    <Compile Include="Transform\DetailsConverter.cs" />
     <Compile Include="Extract\ExtractCarDetailUrlsProcess.cs" />
     <Compile Include="Extract\ExtractCarDetailsProcess.cs" />
-    <Compile Include="Extract\SearchCarLinkHandler.cs" />
     <Compile Include="Interfaces\IETLProcess.cs" />
     <Compile Include="Load\LoadProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

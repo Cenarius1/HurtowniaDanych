@@ -1,48 +1,51 @@
 ﻿using DWH.Domain;
 using DWH.ETL.Interfaces;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DWH.ETL.Transform {
-    public class TransformProcess : IETLProcess<ExtractCarDetail, LoadCarDetail> {
+    public class TransformProcess : IETLProcess<string, LoadCarDetail> {
         private Dictionary<string, bool> features;
 
-        public LoadCarDetail Process(ExtractCarDetail input) {
-            features = ConvertFeaturesListToDictionary(input.Features);
+        public LoadCarDetail Process(string rawJson) {
+            var extractCarDetail = JsonConvert.DeserializeObject<ExtractCarDetail>(rawJson, new DetailsConverter());
+
+            features = ConvertFeaturesListToDictionary(extractCarDetail.Features);
 
             var loadCarDetail = new LoadCarDetail() {
-                Id = input.AdId,
+                Id = extractCarDetail.AdId,
                 //DETAILS
-                BodyType = input.BodyType,
-                Category = input.Category,
-                City = input.City,
-                Color = input.City,
-                CountryOrigin = input.CountryOrigin,
-                DoorCount = input.DoorCount,
-                EngineCapacity = input.EngineCapacity,
-                EngineCode = input.EngineCode,
-                EnginePower = input.EnginePower,
-                Env = input.Env,
-                FuelType = input.FuelType,
-                Gearbox = input.Gearbox,
-                Make = input.Make,
-                Mileage = input.Mileage,
-                Model = input.Model,
-                NrSeats = input.NrSeats,
-                OfferSeek = input.OfferSeek,
-                Price = input.Price,
-                PriceRaw = input.PriceRaw,
-                PrivateBusiness = input.PrivateBusiness,
-                Region = input.Region,
-                Registration = input.Registration,
-                Subregion = input.Subregion,
-                Title = input.Title,
-                Transmission = input.Transmission,
-                UserId = input.UserId,
-                UserStatus = input.UserStatus,
-                Version = input.Version,
-                Vin = input.Vin,
-                Year = input.Year,
+                BodyType = extractCarDetail.BodyType,
+                Category = extractCarDetail.Category,
+                City = extractCarDetail.City,
+                Color = extractCarDetail.City,
+                CountryOrigin = extractCarDetail.CountryOrigin,
+                DoorCount = extractCarDetail.DoorCount,
+                EngineCapacity = extractCarDetail.EngineCapacity,
+                EngineCode = extractCarDetail.EngineCode,
+                EnginePower = extractCarDetail.EnginePower,
+                Env = extractCarDetail.Env,
+                FuelType = extractCarDetail.FuelType,
+                Gearbox = extractCarDetail.Gearbox,
+                Make = extractCarDetail.Make,
+                Mileage = extractCarDetail.Mileage,
+                Model = extractCarDetail.Model,
+                NrSeats = extractCarDetail.NrSeats,
+                OfferSeek = extractCarDetail.OfferSeek,
+                Price = extractCarDetail.Price,
+                PriceRaw = extractCarDetail.PriceRaw,
+                PrivateBusiness = extractCarDetail.PrivateBusiness,
+                Region = extractCarDetail.Region,
+                Registration = extractCarDetail.Registration,
+                Subregion = extractCarDetail.Subregion,
+                Title = extractCarDetail.Title,
+                Transmission = extractCarDetail.Transmission,
+                UserId = extractCarDetail.UserId,
+                UserStatus = extractCarDetail.UserStatus,
+                Version = extractCarDetail.Version,
+                Vin = extractCarDetail.Vin,
+                Year = extractCarDetail.Year,
                 //FEATURES
                 Abs = ResolveFeature("abs"),
                 Cd = ResolveFeature("cd"),

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace DWH.ETL.Extract {
+namespace DWH.ETL.Transform {
     public class DetailsConverter : JsonConverter {
         private List<string> deserializationErrors = new List<string>();
         public override bool CanConvert(Type objectType) {
