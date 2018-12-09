@@ -17,12 +17,14 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_serach" Content="Szukaj" HorizontalAlignment="Left" Margin="740,47,0,0" VerticalAlignment="Top" Width="94" Height="28" Click="btn_serach_Click"/>
-        <TextBox x:Name="tbx_seatch" HorizontalAlignment="Left" Height="28" Margin="546,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167"/>
+        <Button x:Name="btn_serach" Content="Szukaj" HorizontalAlignment="Left" Margin="712,40,0,0" VerticalAlignment="Top" Width="119" Height="32" Click="btn_serach_Click" FontSize="16"/>
+        <TextBox x:Name="tbx_seatch" HorizontalAlignment="Left" Height="32" Margin="542,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <DataGrid x:Name="dataGrid" Height="356" Margin="39,149,0,0" IsReadOnly="True" VerticalAlignment="Top" Width="795" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" CanUserAddRows="False"  />
         <Button x:Name="btn_Extract" Content="Extract" HorizontalAlignment="Left" Margin="43,84,0,0" VerticalAlignment="Top" Width="76" Height="47" Click="btn_Extract_Click"/>
         <Button x:Name="btn_Load" Content="Load" HorizontalAlignment="Left" Margin="224,84,0,0" VerticalAlignment="Top" Width="76" Height="47" Click="btn_Load_Click"/>
         <Button x:Name="btn_Transform" Content="Transform" HorizontalAlignment="Left" Margin="133,84,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-1.067,2.477" Height="47" Click="btn_Transform_Click"/>
+        <Label x:Name="lbl_param" Content="Parametryzacja" HorizontalAlignment="Left" Margin="712,86,0,0" VerticalAlignment="Top" ClipToBounds="True" Height="32" Width="119" FontSize="16"/>
+        <ComboBox x:Name="cb_brand" HorizontalAlignment="Left" Margin="542,86,0,0" VerticalAlignment="Top" Width="143" Height="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
     </Grid>
 </Window>
