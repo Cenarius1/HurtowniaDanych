@@ -15,6 +15,9 @@ namespace DWH {
         private readonly ExtractCarDetailsProcess extractProcess;
         private readonly TransformProcess transformProcess;
         private readonly LoadProcess loadProcess;
+        //private ETLProcessManager _ETLProcessManagers { get; set; }
+        //List<ExtractCarDetail> _listExtractCarDetail;
+        //private List<LoadCarDetail> _loadCarDetailsList;
 
         private const string extractFile = "extract.txt";
         private const string transformFile = "transform.txt";
@@ -32,6 +35,65 @@ namespace DWH {
             LaunchLoad();
         }
 
+        //public void Launch() {
+        //    //do wywalenia ponizej, dla pokazania czegos na grid
+        //    _loadCarDetailsList = new List<LoadCarDetail>()
+        //    {
+        //        new LoadCarDetail()
+        //        {
+        //            Id = 1,
+        //            Title = "title1",
+        //            Price = "100",
+        //            Year = "1000",
+        //            OfferSeek = "1",
+        //            PrivateBusiness = "1",
+        //            Category = "1",
+        //            Region = "1",
+        //            Subregion = "1",
+        //            UserId = "1",
+        //            City = "1",
+        //            Make = "1",
+        //            Model = "1",
+        //            EngineCode = "1"
+        //        },
+        //        new LoadCarDetail()
+        //        {
+        //            Id = 2,
+        //            Title = "title12",
+        //            Price = "222",
+        //            Year = "2222",
+        //            OfferSeek = "2",
+        //            PrivateBusiness = "2",
+        //            Category = "2",
+        //            Region = "2",
+        //            Subregion = "2",
+        //            UserId = "2",
+        //            City = "2",
+        //            Make = "2",
+        //            Model = "2",
+        //            EngineCode = "2"
+        //        },
+        //        new LoadCarDetail()
+        //        {
+        //            Id = 3,
+        //            Title = "title123",
+        //            Price = "3333",
+        //            Year = "3333",
+        //            OfferSeek = "3",
+        //            PrivateBusiness = "3",
+        //            Category = "3",
+        //            Region = "3",
+        //            Subregion = "3",
+        //            UserId = "3",
+        //            City = "3",
+        //            Make = "3",
+        //            Model = "3",
+        //            EngineCode = "3"
+        //        },
+        //    };
+        //    return;
+        //    //do usuniecia powyzej
+        //}
         public void LaunchExtract(string baseUrl) {
             var urls = ExtractUrls(baseUrl);
             ExtractCarDetails(urls, extractFile);
@@ -73,7 +135,7 @@ namespace DWH {
         private void TransformCarDetails(string inputFile, string outputFile) {
             Console.WriteLine("Starting transform process...");
 
-            var rawData =  File.ReadAllLines(inputFile).ToList();
+            var rawData = File.ReadAllLines(inputFile).ToList();
 
             var loadCarDetails = new List<string>();
 
