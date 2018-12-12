@@ -71,8 +71,9 @@ namespace DWH.GUI
 
             if (_loadCarDetailsList != null)
             {
-                _listGridViewModel = GetMappedModelToVM();
-                this.dataGrid.ItemsSource = _listGridViewModel;
+                //_listGridViewModel = GetMappedModelToVM();
+                //this.dataGrid.ItemsSource = _listGridViewModel;
+                this.dataGrid.ItemsSource = _loadCarDetailsList;
             }
         }
 

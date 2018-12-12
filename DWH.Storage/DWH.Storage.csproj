@@ -55,6 +55,10 @@
     <Compile Include="Migrations\201812121139425_InitialCreate.Designer.cs">
       <DependentUpon>201812121139425_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812121317100_ChangeInRawPrice.cs" />
+    <Compile Include="Migrations\201812121317100_ChangeInRawPrice.Designer.cs">
+      <DependentUpon>201812121317100_ChangeInRawPrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,6 +74,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812121139425_InitialCreate.resx">
       <DependentUpon>201812121139425_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812121317100_ChangeInRawPrice.resx">
+      <DependentUpon>201812121317100_ChangeInRawPrice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

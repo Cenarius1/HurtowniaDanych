@@ -24,8 +24,8 @@
         public string DoorCount { get; set; }
         public string NrSeats { get; set; }
         public string Color { get; set; }
-        public int Price { get; set; }
-        public string PriceRaw { get; set; }
+        public string Price { get; set; }
+        public int PriceRaw { get; set; }
         public string CountryOrigin { get; set; }
         public string Registration { get; set; }
         public int UserStatus { get; set; }
