@@ -56,7 +56,7 @@ namespace DWH.Domain {
         [JsonProperty("features")]
         public List<string> Features { get; set; }
         [JsonProperty("price")]
-        public string Price { get; set; }
+        public int Price { get; set; }
         [JsonProperty("price_raw")]
         public string PriceRaw { get; set; }
         [JsonProperty("country_origin")]
