@@ -154,8 +154,8 @@ namespace DWH.GUI
             _loadCarDetailsList = _carDetailsRepository.SelectAll();
 
             if (_loadCarDetailsList != null) {
-                _listGridViewModel = GetMappedModelToVM();
-                this.dataGrid.ItemsSource = _listGridViewModel;
+               // _listGridViewModel = GetMappedModelToVM();
+                this.dataGrid.ItemsSource = _loadCarDetailsList;
             }
             dataGrid.Items.Refresh();
         }
