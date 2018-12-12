@@ -58,7 +58,7 @@ namespace DWH.Domain {
         [JsonProperty("price")]
         public string Price { get; set; }
         [JsonProperty("price_raw")]
-        public string PriceRaw { get; set; }
+        public double PriceRaw { get; set; }
         [JsonProperty("country_origin")]
         public string CountryOrigin { get; set; }
         [JsonProperty("registration")]

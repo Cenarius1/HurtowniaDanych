@@ -25,7 +25,7 @@
         public string NrSeats { get; set; }
         public string Color { get; set; }
         public string Price { get; set; }
-        public string PriceRaw { get; set; }
+        public double PriceRaw { get; set; }
         public string CountryOrigin { get; set; }
         public string Registration { get; set; }
         public int UserStatus { get; set; }

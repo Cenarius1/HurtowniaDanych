@@ -74,8 +74,9 @@ namespace DWH.GUI
 
             if (_loadCarDetailsList != null)
             {
-                _listGridViewModel = GetMappedModelToVM();
-                this.dataGrid.ItemsSource = _listGridViewModel;
+                //_listGridViewModel = GetMappedModelToVM();
+                //this.dataGrid.ItemsSource = _listGridViewModel;
+                this.dataGrid.ItemsSource = _loadCarDetailsList;
             }
         }
 
@@ -109,8 +110,8 @@ namespace DWH.GUI
                 var result = _listGridViewModel.Where(x => x.Title.Contains(searchText)
                 || x.City.Contains(searchText)
                 || x.Year.Contains(searchText)
-                || x.Model.Contains(searchText)
-                || x.Price.Contains(searchText)).ToList();
+                || x.Model.Contains(searchText)).ToList();
+                //|| x.Price.Contains(searchText)
                 this.dataGrid.ItemsSource = result;
             }
 

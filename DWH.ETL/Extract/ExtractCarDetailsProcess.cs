@@ -15,21 +15,23 @@ namespace DWH.ETL.Extract {
 
             var doc = Run(2, () => web.Load(url));
 
-            var scriptNodes = doc.DocumentNode.SelectNodes("//script[@type='text/javascript']");
-
             var carDetails = string.Empty;
+            try
+            {
+                var scriptNodes = doc.DocumentNode.SelectNodes("//script[@type='text/javascript']");
 
-            foreach (var x in scriptNodes) {
-                var InnerHtml = x.InnerHtml;
-                string pattern = @"(?<targeting>GPT\.targeting\s=\s)(?<details>{.*?})";
-                var match = Regex.Match(InnerHtml, pattern);
-                if (match.Success) {
-                    try {
-                        carDetails = match.Groups["details"].ToString();
-                    } catch (JsonSerializationException ex) {
-                        Console.WriteLine(ex.Message);
-                    }
+                foreach (var x in scriptNodes)
+                {
+                    var InnerHtml = x.InnerHtml;
+                    string pattern = @"(?<targeting>GPT\.targeting\s=\s)(?<details>{.*?})";
+                    var match = Regex.Match(InnerHtml, pattern);
+                    if (match.Success)
+                        carDetails = match.Groups["details"].ToString();                        
                 }
+            } 
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
             return carDetails;

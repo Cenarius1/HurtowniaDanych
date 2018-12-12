@@ -19,7 +19,7 @@ namespace DWH.ETL.Transform {
                 BodyType = extractCarDetail.BodyType,
                 Category = extractCarDetail.Category,
                 City = extractCarDetail.City,
-                Color = extractCarDetail.City,
+                Color = extractCarDetail.Color,
                 CountryOrigin = extractCarDetail.CountryOrigin,
                 DoorCount = extractCarDetail.DoorCount,
                 EngineCapacity = extractCarDetail.EngineCapacity,
@@ -121,7 +121,7 @@ namespace DWH.ETL.Transform {
         }
 
         private Dictionary<string, bool> ConvertFeaturesListToDictionary(List<string> features) {
-            return features.ToDictionary(x => x, x => true);
+            return features.Distinct().ToDictionary(x => x, x => true);
         }
     }
 }

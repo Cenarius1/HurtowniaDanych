@@ -55,9 +55,17 @@ namespace DWH {
             Console.WriteLine("Starting load process...");
             var loadCarDetailsJson = File.ReadAllLines(sourceFile);
 
-            var loadCarDertails = new List<LoadCarDetail>();
+            var loadCarDertails = new List<LoadCarDetail>();           
             foreach (var json in loadCarDetailsJson) {
-                loadCarDertails.Add(JsonConvert.DeserializeObject<LoadCarDetail>(json));
+                // with Duplicates
+                //loadCarDertails.Add(JsonConvert.DeserializeObject<LoadCarDetail>(json));               
+
+                //Remove duplicates
+                LoadCarDetail item;
+                item = JsonConvert.DeserializeObject<LoadCarDetail>(json);
+                bool exist = loadCarDertails.Any(car => car.Id == item.Id);
+                if (!exist)
+                    loadCarDertails.Add(item);
             }
 
             var success = loadProcess.Process(loadCarDertails);
@@ -69,9 +77,13 @@ namespace DWH {
                 Console.WriteLine("ETL Process occured problems during work, check console logs for details.");
             }
         }
-
+        
         private void TransformCarDetails(string inputFile, string outputFile) {
             Console.WriteLine("Starting transform process...");
+
+            // delete old transformation files to avoid duplicated entries
+            if(File.Exists(outputFile))
+                File.Delete(outputFile);
 
             var rawData = File.ReadAllLines(inputFile).ToList();
 
