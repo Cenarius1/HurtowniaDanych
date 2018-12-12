@@ -5,26 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DWH.GUI"
         mc:Ignorable="d"
-        Title="OTOMOTO - Hurtownia Danych" Height="565" Width="898" Background="#FF1DA06B">
+        Title="OTOMOTO - Hurtownia Danych" Height="565" Width="898" Background="LightGray">
     <Grid x:Name="grid_main">
-        <Button x:Name="btn_start" Content="Start" HorizontalAlignment="Left" Margin="43,25,0,0" VerticalAlignment="Top" Width="257" Height="50" Click="btn_start_Click">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
-                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
-                    <GradientStop Color="#FFCDCDCD" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btn_serach" Content="Szukaj" HorizontalAlignment="Left" Margin="712,40,0,0" VerticalAlignment="Top" Width="119" Height="32" Click="btn_serach_Click" FontSize="16"/>
-        <TextBox x:Name="tbx_seatch" HorizontalAlignment="Left" Height="32" Margin="542,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <DataGrid x:Name="dataGrid" Height="356" Margin="39,149,0,0" IsReadOnly="True" VerticalAlignment="Top" Width="795" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" CanUserAddRows="False"  />
-        <Button x:Name="btn_Extract" Content="Extract" HorizontalAlignment="Left" Margin="43,84,0,0" VerticalAlignment="Top" Width="76" Height="47" Click="btn_Extract_Click"/>
-        <Button x:Name="btn_Load" Content="Load" HorizontalAlignment="Left" Margin="224,84,0,0" VerticalAlignment="Top" Width="76" Height="47" Click="btn_Load_Click"/>
-        <Button x:Name="btn_Transform" Content="Transform" HorizontalAlignment="Left" Margin="133,84,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-1.067,2.477" Height="47" Click="btn_Transform_Click"/>
-        <Label x:Name="lbl_param" Content="Parametryzacja" HorizontalAlignment="Left" Margin="712,86,0,0" VerticalAlignment="Top" ClipToBounds="True" Height="32" Width="119" FontSize="16"/>
-        <ComboBox x:Name="cb_brand" HorizontalAlignment="Left" Margin="542,86,0,0" VerticalAlignment="Top" Width="143" Height="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btn_start" Content="Start" Margin="10" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" Click="btn_start_Click"/>
+            <Button x:Name="btn_Extract" Content="Extract" Margin="10" Grid.Column="0" Grid.Row="1" Click="btn_Extract_Click"/>
+            <Button x:Name="btn_Transform" Content="Transform" Margin="10" Grid.Column="1" Grid.Row="1" Click="btn_Transform_Click"/>
+            <Button x:Name="btn_Load" Content="Load" Margin="10" Grid.Column="2" Grid.Row="1" Click="btn_Load_Click"/>
+            <ComboBox x:Name="cb_brand" Margin="10" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btn_reflesh" Content="Odśwież" Margin="10" Grid.Row="0" Grid.Column="1"  Click="Btn_reflesh_Click" FontSize="16"/>
+            <Button x:Name="btn_serach" Content="Szukaj" Margin="10" Grid.Row="1" Grid.Column="1"  Click="btn_serach_Click" FontSize="16"/>
+            <TextBox x:Name="tbx_seatch" Grid.Row="1" Grid.Column="0"  Margin="10" HorizontalContentAlignment="Left"  VerticalContentAlignment="Center"/>
+        </Grid>
+
+        <DataGrid x:Name="dataGrid" IsReadOnly="True" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" CanUserAddRows="False" ColumnWidth="Auto" />
+
+
+       
     </Grid>
 </Window>

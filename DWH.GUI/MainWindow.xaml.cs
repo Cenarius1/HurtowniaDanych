@@ -21,8 +21,11 @@ namespace DWH.GUI
             _ETLProcessManagers = new ETLProcessManager();
             _loadCarDetailsList = new List<LoadCarDetail>();
             _carDetailsRepository = new CarDetailsRepository(new DataWarehouseContext());
-            var columnWidth = (dataGrid.Width - 10) / columnNumber;
-            dataGrid.ColumnWidth = columnWidth;
+
+            var columnWidth = dataGrid.ActualWidth - 10 / columnNumber;
+
+            //var columnWidth = (dataGrid.Width - 10) / columnNumber;
+            //dataGrid.ColumnWidth = columnWidth;
             dataGrid.Items.Refresh();
             SetStartupProcessButtons();
             brandDictionary = GetBrandList();
@@ -137,6 +140,16 @@ namespace DWH.GUI
             btn_Load.IsEnabled = false;
             btn_Extract.IsEnabled = true;
 
+            _loadCarDetailsList = _carDetailsRepository.SelectAll();
+
+            if (_loadCarDetailsList != null) {
+                _listGridViewModel = GetMappedModelToVM();
+                this.dataGrid.ItemsSource = _listGridViewModel;
+            }
+            dataGrid.Items.Refresh();
+        }
+
+        private void Btn_reflesh_Click(object sender, RoutedEventArgs e) {
             _loadCarDetailsList = _carDetailsRepository.SelectAll();
 
             if (_loadCarDetailsList != null) {
