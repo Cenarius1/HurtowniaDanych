@@ -119,7 +119,7 @@ namespace DWH.GUI
             var paramLink = brandDictionary
                 .FirstOrDefault(x => x.Key == cb_brand.SelectedValue.ToString()).Value;
 
-            _ETLProcessManagers.LaunchAll(paramLink);
+            _ETLProcessManagers.LaunchExtract(paramLink);
             btn_Extract.IsEnabled = false;
             btn_Transform.IsEnabled = true;
         }
