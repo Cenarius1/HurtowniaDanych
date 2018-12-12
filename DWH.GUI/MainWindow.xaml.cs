@@ -12,7 +12,7 @@ namespace DWH.GUI
         private ETLProcessManager _ETLProcessManagers { get; set; }
         private CarDetailsRepository _carDetailsRepository { get; set; }
         private List<LoadCarDetail> _loadCarDetailsList { get; set; }
-        private List<GridViewModel> _listGridViewModel { get; set; }
+        private List<LoadCarDetail> _listGridViewModel { get; set; }
         private const int columnNumber = 6;
         private Dictionary<string, string> brandDictionary;
         public MainWindow()
@@ -103,11 +103,11 @@ namespace DWH.GUI
             var searchText = tbx_seatch.Text;
             if (searchText == string.Empty)
             {
-                this.dataGrid.ItemsSource = _listGridViewModel;
+                this.dataGrid.ItemsSource = _loadCarDetailsList;
             }
             else
             {
-                var result = _listGridViewModel.Where(x => x.Title.Contains(searchText)
+                var result = _loadCarDetailsList.Where(x => x.Title.Contains(searchText)
                 || x.City.Contains(searchText)
                 || x.Year.Contains(searchText)
                 || x.Model.Contains(searchText)).ToList();
@@ -144,8 +144,8 @@ namespace DWH.GUI
             _loadCarDetailsList = _carDetailsRepository.SelectAll();
 
             if (_loadCarDetailsList != null) {
-                _listGridViewModel = GetMappedModelToVM();
-                this.dataGrid.ItemsSource = _listGridViewModel;
+                //_listGridViewModel = GetMappedModelToVM();
+                this.dataGrid.ItemsSource = _loadCarDetailsList;
             }
             dataGrid.Items.Refresh();
         }
