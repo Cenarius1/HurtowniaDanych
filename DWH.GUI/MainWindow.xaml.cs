@@ -106,8 +106,8 @@ namespace DWH.GUI
                 var result = _listGridViewModel.Where(x => x.Title.Contains(searchText)
                 || x.City.Contains(searchText)
                 || x.Year.Contains(searchText)
-                || x.Model.Contains(searchText)
-                || x.Price.Contains(searchText)).ToList();
+                || x.Model.Contains(searchText)).ToList();
+                //|| x.Price.Contains(searchText)
                 this.dataGrid.ItemsSource = result;
             }
 

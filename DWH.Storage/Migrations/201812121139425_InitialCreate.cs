@@ -3,7 +3,7 @@ namespace DWH.Storage.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -36,7 +36,7 @@ namespace DWH.Storage.Migrations
                         DoorCount = c.String(),
                         NrSeats = c.String(),
                         Color = c.String(),
-                        Price = c.String(),
+                        Price = c.Int(nullable: false),
                         PriceRaw = c.String(),
                         CountryOrigin = c.String(),
                         Registration = c.String(),
