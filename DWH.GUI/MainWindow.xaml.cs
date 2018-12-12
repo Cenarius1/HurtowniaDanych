@@ -32,23 +32,23 @@ namespace DWH.GUI
 
         private Dictionary<string, string> GetBrandList()
         {
-            string templateLink = "https://www.otomoto.pl/osobowe/{0}/?search[filter_float_year%3Ato]=2018";
+            string templateLink = "https://www.otomoto.pl/osobowe/{0}/?search[filter_float_year%3Ato]=2018&page=";
             return new Dictionary<string, string>()
             {
-                {"ALL", String.Format(templateLink,"https://www.otomoto.pl/osobowe/?search[filter_float_year%3Ato]=2018")},
-                {"BMW", String.Format(templateLink,"BMW")},
+                {"ALL", "https://www.otomoto.pl/osobowe/?search[filter_float_year%3Ato]=2018&page="},
+                {"BMW", String.Format(templateLink,"bmw")},
                 {"Alfa Romeo",String.Format(templateLink,"alfa-romeo") },
                 {"Audi",String.Format(templateLink,"audi") },
                 {"Fiat",String.Format(templateLink,"fiat") },
-                {"Jaguar",String.Format(templateLink,"Jaguar") },
-                {"McLaren",String.Format(templateLink,"McLaren") },
-                {"Nissan",String.Format(templateLink,"Nissan") },
-                {"Opel",String.Format(templateLink,"Opel") },
-                {"Peugeot",String.Format(templateLink,"Peugeot") },
-                {"Porsche",String.Format(templateLink,"Porsche") },
-                {"Seat",String.Format(templateLink,"Seat") },
-                {"Toyota",String.Format(templateLink,"Toyota") },
-                {"Volvo",String.Format(templateLink,"Volvo") },
+                {"Jaguar",String.Format(templateLink,"jaguar") },
+                {"McLaren",String.Format(templateLink,"mclaren") },
+                {"Nissan",String.Format(templateLink,"nissan") },
+                {"Opel",String.Format(templateLink,"opel") },
+                {"Peugeot",String.Format(templateLink,"peugeot") },
+                {"Porsche",String.Format(templateLink,"porsche") },
+                {"Seat",String.Format(templateLink,"seat") },
+                {"Toyota",String.Format(templateLink,"toyota") },
+                {"Volvo",String.Format(templateLink,"volvo") },
             };
         }
 
