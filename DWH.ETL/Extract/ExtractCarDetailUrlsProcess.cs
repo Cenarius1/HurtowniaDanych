@@ -13,13 +13,12 @@ namespace DWH.ETL.Extract {
                 BaseLinkPath = baseUrl;
 
             List<string> linksFromEachPage = new List<string>();
-            int lastPageNumber = GetPagesCount();
             /*
              *  Lepiej ustawić sztuczną ilość stron, a nie brać z maksymalnej ze strony
              *  1) Jest tego ogrom ~7685, a na każdej stronie 16 aut, czas pobierania tego bedzie duzy
              *  2) Maksymalna ilosc stron zmienia się. A sprawdzanie za każdym razem jest mnożeniem zapytań.
              */
-            lastPageNumber = 10;
+            int lastPageNumber = 10;
             for (int i = 0; i < lastPageNumber; i++) {
                 string linkToPage = BaseLinkPath + (i + 1).ToString();
                 linksFromEachPage.AddRange(GetLinks(linkToPage));

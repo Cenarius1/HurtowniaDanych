@@ -53,7 +53,7 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="80"></DataGridTextColumn>
-                <DataGridTextColumn Header="Make" Binding="{Binding Title, Converter={StaticResource StringEmptyConverter}, ConverterParameter='N/A'}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title, Converter={StaticResource StringEmptyConverter}, ConverterParameter='N/A'}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Year" Binding="{Binding Year}" Width="60"></DataGridTextColumn>
                 <DataGridTextColumn Header="Mileage" Binding="{Binding Mileage, StringFormat=N0}" Width="60"></DataGridTextColumn>
                 <DataGridTextColumn Header="Price" Binding="{Binding PriceRaw}" Width="60"></DataGridTextColumn>
